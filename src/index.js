@@ -10,7 +10,9 @@ import './App.css';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ChakraWrap>
+      <App />
+    </ChakraWrap>
   </Provider>,
   document.getElementById('root')
 );

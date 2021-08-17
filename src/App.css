@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  font-family: 'Nunito', sans-serif;
+  background-color: var(--primary-color) !important;
+  color: var(--text-color) !important;
+  font-family: 'Nunito', sans-serif !important;
 }
