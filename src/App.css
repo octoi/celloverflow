@@ -18,7 +18,7 @@ body {
     background-color: var(--primary-color) !important;
     color: var(--text-color) !important;
     font-family: 'Nunito', sans-serif !important;
-    padding: 50px 60px;
+    padding: 50px 60px !important;
 }
 
 
