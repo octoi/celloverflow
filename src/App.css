@@ -1,22 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
-
 :root {
-  --primary-color: #1F1D2B;
-  --secondary-color: #272636;
-  --accent-color: #6F6FC8;
-  --error-color: #FE4343;
-  --text-color: #F9F9F9;
-  --text-opacity-color: #D1D1D1;
+    --primary-color: #1F1D2B;
+    --secondary-color: #272636;
+    --accent-color: #6F6FC8;
+    --error-color: #FE4343;
+    --text-color: #F9F9F9;
+    --text-opacity-color: #D1D1D1;
 }
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: var(--primary-color) !important;
-  color: var(--text-color) !important;
-  font-family: 'Nunito', sans-serif !important;
+    background-color: var(--primary-color) !important;
+    color: var(--text-color) !important;
+    font-family: 'Nunito', sans-serif !important;
+}
+
+
+/* custom scroll bar */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+    border-radius: 5px;
+}
+
+
+/* custom selection  */
+
+::selection {
+    color: #ffffff;
+    background: var(--primaryAccentColor);
+}
+
+button,
+input,
+textarea {
+    outline: none;
+    border: none;
+    background: none;
 }
