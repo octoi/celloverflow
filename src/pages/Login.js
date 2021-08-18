@@ -1,6 +1,5 @@
 import React from 'react';
 import { Flex, Heading, Button, Link, Text } from '@chakra-ui/react';
-import getRandomRickRollLink from '../utils/rickRoll';
 
 export default function Login() {
   return (
