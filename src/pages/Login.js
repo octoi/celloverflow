@@ -1,7 +1,32 @@
 import React from 'react';
-import { Flex, Heading, Button, Link, Text } from '@chakra-ui/react';
+import { Flex, Heading, Button, Link, Text, useToast } from '@chakra-ui/react';
+
+import { auth, provider } from '../firebase/firebase';
+import getUserObject from '../utils/loginHelper';
+
+import { useDispatch } from 'react-redux';
+import { Login as userLogin } from '../redux/actions/userLogin';
 
 export default function Login() {
+  const showToast = useToast();
+  const dispatchAction = useDispatch();
+
+  const loginWithGoogle = () => {
+    auth.signInWithPopup(provider).then(userData => {
+      const user = getUserObject(userData); // getting wanted user data user data 
+      dispatchAction(userLogin(user));
+    }).catch(err => {
+      console.log(err);
+      showToast({
+        title: 'Failed to login with google 😖',
+        position: 'top-right',
+        duration: 3000,
+        status: 'error',
+        isClosable: true,
+      });
+    })
+  }
+
   return (
     <Flex height="90vh" alignItems="center" justifyContent="center" >
       <Flex direction="column" width="45vh" background="var(--secondary-color)" p={12} rounded={6}>
@@ -10,7 +35,7 @@ export default function Login() {
           By signing in you agree our
           <Link href='/page?type=terms'> Terms & services</Link>
         </Text>
-        <Button size="lg" width='100%' style={{ background: 'var(--accent-color)' }}>
+        <Button onClick={loginWithGoogle} size="lg" width='100%' style={{ background: 'var(--accent-color)' }}>
           Log In With Google
         </Button>
       </Flex>
