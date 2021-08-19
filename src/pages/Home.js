@@ -1,9 +1,10 @@
 import React from 'react'
+import AuthWrapper from '../components/AuthWrapper';
 
 export default function Home() {
   return (
-    <div>
+    <AuthWrapper authenticationRequired={true}>
 
-    </div>
+    </AuthWrapper>
   )
 }

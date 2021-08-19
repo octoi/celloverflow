@@ -1,9 +1,8 @@
 import React from 'react';
-import { Flex, Heading, Button, Link, Text, useToast } from '@chakra-ui/react';
-
-import { auth, provider } from '../firebase/firebase';
+import AuthWrapper from '../components/AuthWrapper';
 import getUserObject from '../utils/loginHelper';
-
+import { Flex, Heading, Button, Link, Text, useToast } from '@chakra-ui/react';
+import { auth, provider } from '../firebase/firebase';
 import { useDispatch } from 'react-redux';
 import { Login as userLogin } from '../redux/actions/userLogin';
 
@@ -28,17 +27,19 @@ export default function Login() {
   }
 
   return (
-    <Flex height="90vh" alignItems="center" justifyContent="center" >
-      <Flex direction="column" width="45vh" background="var(--secondary-color)" p={12} rounded={6}>
-        <Heading mb={4}>Get started</Heading>
-        <Text mb={4} opacity="0.5">
-          By signing in you agree our
-          <Link href='/page?type=terms'> Terms & services</Link>
-        </Text>
-        <Button onClick={loginWithGoogle} size="lg" width='100%' style={{ background: 'var(--accent-color)' }}>
-          Log In With Google
-        </Button>
+    <AuthWrapper authenticationRequired={false}>
+      <Flex height="90vh" alignItems="center" justifyContent="center" >
+        <Flex direction="column" width="45vh" background="var(--secondary-color)" p={12} rounded={6}>
+          <Heading mb={4}>Get started</Heading>
+          <Text mb={4} opacity="0.5">
+            By signing in you agree our
+            <Link href='/page?type=terms'> Terms & services</Link>
+          </Text>
+          <Button onClick={loginWithGoogle} size="lg" width='100%' style={{ background: 'var(--accent-color)' }}>
+            Log In With Google
+          </Button>
+        </Flex>
       </Flex>
-    </Flex>
+    </AuthWrapper>
   )
 }
