@@ -8,14 +8,19 @@ export const Container = styled.div`
 `
 
 export const PostContainer = styled.div`
-  flex: 2;
+  width: 100%;
+  margin-right: 20px;
+
+  @media (max-width: 1446px) {
+    margin-right: 0px;
+  }
 `
 
 export const UserDetailsContainer = styled.div`
-  width: 400px;
+  width: 450px;
   background: var(--secondary-color);
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px;
 
   .profile {
     display: flex;
@@ -43,5 +48,23 @@ export const UserDetailsContainer = styled.div`
       color: var(--text-opacity-color);
       font-size: 20px;
     }
+  }
+
+  button {
+    width: 100%;
+    margin-top: 30px;
+    background: var(--accent-color);
+    border-radius: 8px;
+    height: 50px;
+    font-size: 20px;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  @media (max-width: 1446px) {
+    display: none;
   }
 `

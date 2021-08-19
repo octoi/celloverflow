@@ -1,9 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { UserDetailsContainer } from '../../styles/appStyles';
 
 export default function UserDetails() {
   const user = useSelector(state => state.user.user)
+
+  const history = useHistory();
 
   return (
     <UserDetailsContainer>
@@ -14,6 +17,7 @@ export default function UserDetails() {
           <h3>@{user?.username}</h3>
         </div>
       </div>
+      <button onClick={() => history.push('/settings')}>Settings</button>
     </UserDetailsContainer>
   );
 }
