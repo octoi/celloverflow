@@ -10,7 +10,7 @@ export default function AuthWrapper({ children, authenticationRequired = false }
 
   useEffect(() => {
     if (!user && authenticationRequired) history.push('/login');
-    if (user && !authenticationRequired) history.push('/');
+    if (user && !authenticationRequired) history.push('/app');
   }, [user, history, authenticationRequired]);
 
   return <div>{children}</div>;

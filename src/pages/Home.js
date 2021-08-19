@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import AuthWrapper from '../components/auth/AuthWrapper';
 
 export default function Home() {
   return (
-    <AuthWrapper authenticationRequired={true}>
+    <AuthWrapper authenticationRequired={false}>
 
     </AuthWrapper>
   )

@@ -6,14 +6,11 @@ import {
   ModalCloseButton,
   ModalHeader,
   ModalBody,
-  useDisclosure,
   ModalFooter,
 } from '@chakra-ui/react';
 import { Button } from '../styles/headerStyles';
 
-export default function CustomModal({ children, ui, title, footer }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+export default function CustomModal({ isOpen, onOpen, onClose ,children, ui, title, footer }) {
   return (
     <div>
       <div onClick={onOpen}>
