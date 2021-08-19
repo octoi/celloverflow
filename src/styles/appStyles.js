@@ -16,11 +16,66 @@ export const PostContainer = styled.div`
   }
 `
 
+export const Post = styled.div`
+  background: var(--secondary-color);
+  padding: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 20px;
+
+  h3 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 22px;
+    color: var(--text-opacity-color);
+    margin-top: 20px;
+  }
+
+  .bottom {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .tags {
+      display: flex;
+
+      span {
+        padding: 8px 20px;
+        border-radius: 5px;
+        border: 2px solid var(--accent-color);
+        margin-right: 15px;
+        font-size: 22px;
+      }
+    }
+
+    p {
+      color: var(--text-color);
+      font-size: 22px;
+
+      span {
+        color: var(--accent-color);
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+`
+
 export const UserDetailsContainer = styled.div`
   width: 450px;
   background: var(--secondary-color);
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 30px;
+  height: fit-content;
 
   .profile {
     display: flex;
