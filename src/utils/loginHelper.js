@@ -14,12 +14,12 @@ Idiot, i wrote this whole comment just for the expression you wrote before
 never ever touch that or eternal pain and suffer 😡
 */
 const getUserObject = (userData) => {
-  const userUsername = userData.user.email.split('@')[0]; // removing provider from email
+  const userUsername = userData.email.split('@')[0]; // removing provider from email
 
   const user = {
-    name: userData.user.displayName,
-    email: userData.user.email,
-    profile: userData.user.photoURL,
+    name: userData.displayName,
+    email: userData.email,
+    profile: userData.photoURL,
     username: userUsername,
   }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthWrapper from '../components/AuthWrapper';
+import AuthWrapper from '../components/auth/AuthWrapper';
 import getUserObject from '../utils/loginHelper';
 import { Flex, Heading, Button, Link, Text, useToast } from '@chakra-ui/react';
 import { auth, provider } from '../firebase/firebase';
@@ -12,7 +12,7 @@ export default function Login() {
 
   const loginWithGoogle = () => {
     auth.signInWithPopup(provider).then(userData => {
-      const user = getUserObject(userData); // getting wanted user data user data 
+      const user = getUserObject(userData.user); // getting wanted user data user data 
       dispatchAction(userLogin(user));
     }).catch(err => {
       console.log(err);
