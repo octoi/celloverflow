@@ -11,6 +11,7 @@ export default function AuthInitializer({ children }) {
 
   useEffect(() => {
     auth.onAuthStateChanged(userData => {
+      if (!userData) return;
       const user = getUserObject(userData);
       dispatch(userLogin(user));
     })

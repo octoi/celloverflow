@@ -7,15 +7,19 @@ import logoText from '../assets/logo_text.svg';
 import logoIcon from '../assets/logo.svg';
 import downIcon from '../assets/down_icon.svg';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout as userLogout } from '../redux/actions/userLogin';
+
+import { useHistory } from 'react-router-dom';
 
 export default function Header() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const user = useSelector(state => state.user?.user);
 
   const logout = () => {
     dispatch(userLogout());
-    window.location.reload();
   }
 
   return (
@@ -25,10 +29,11 @@ export default function Header() {
         <img className='logo-icon' src={logoIcon} alt='celloverflow' />
       </div>
 
-      <CustomModal
+      {!user && <Button onClick={() => history.push('/login')}>Login</Button>}
+      {user && <CustomModal
         ui={
           <Button>
-            <p>Panda Bear</p>
+            <p>{user.username}</p>
             <img src={downIcon} alt="more" />
           </Button>
         }
@@ -37,7 +42,7 @@ export default function Header() {
         <StyledButton style={{ background: 'var(--accent-color)' }}>Profile 😊</StyledButton>
         <StyledButton style={{ background: 'var(--accent-color)' }}>Settings ‍🧰</StyledButton>
         <StyledButton onClick={logout} style={{ background: 'var(--error-color)' }}>Logout 🚶‍♂️</StyledButton>
-      </CustomModal>
+      </CustomModal>}
     </HeaderContainer>
   )
 }
