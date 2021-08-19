@@ -1,3 +1,16 @@
+/*
+Why i hate css 🤷‍♂️
+CSS is the most painful thing for a web developer especial when it comes
+to responsiveness
+
+I hate CSS because its css
+its easy to learn but hard to fix
+css bugs are annoying than cors error
+Oh lord help us, style our mind with css
+
+:)
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 :root {
     --primary-color: #1F1D2B;
@@ -19,6 +32,12 @@ body {
     color: var(--text-color) !important;
     font-family: 'Nunito', sans-serif !important;
     padding: 50px 60px !important;
+}
+
+@media (max-width: 700px) {
+    body {
+        padding: 20px 30px !important;
+    }
 }
 
 

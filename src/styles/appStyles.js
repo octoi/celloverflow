@@ -46,7 +46,7 @@ export const Post = styled.div`
 
       span {
         padding: 8px 20px;
-        border-radius: 5px;
+        border-radius: 10px;
         border: 2px solid var(--accent-color);
         margin-right: 15px;
         font-size: 22px;
@@ -67,6 +67,15 @@ export const Post = styled.div`
         }
       }
     }
+  }
+  
+  @media(max-width: 915px) {
+    h3 { font-size: 23px; }
+    p { font-size: 20px; }
+
+    span { font-size: 20px !important; }
+    .tags { flex-direction: column; span { width: fit-content; } }
+    /* .bottom { flex-direction: column; } */
   }
 `
 
