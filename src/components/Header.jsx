@@ -7,7 +7,17 @@ import logoText from '../assets/logo_text.svg';
 import logoIcon from '../assets/logo.svg';
 import downIcon from '../assets/down_icon.svg';
 
+import { useDispatch } from 'react-redux';
+import { logout as userLogout } from '../redux/actions/userLogin';
+
 export default function Header() {
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(userLogout());
+    window.location.reload();
+  }
+
   return (
     <HeaderContainer>
       <div>
@@ -26,7 +36,7 @@ export default function Header() {
       >
         <StyledButton style={{ background: 'var(--accent-color)' }}>Profile 😊</StyledButton>
         <StyledButton style={{ background: 'var(--accent-color)' }}>Settings ‍🧰</StyledButton>
-        <StyledButton style={{ background: 'var(--error-color)' }}>Logout 🚶‍♂️</StyledButton>
+        <StyledButton onClick={logout} style={{ background: 'var(--error-color)' }}>Logout 🚶‍♂️</StyledButton>
       </CustomModal>
     </HeaderContainer>
   )
