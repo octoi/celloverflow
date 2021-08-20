@@ -120,7 +120,6 @@ export const UserDetailsContainer = styled.div`
       margin-top: 10px;
       color: var(--text-opacity-color);
       font-size: 20px;
-      margin-bottom: 10px;
     }
     
     a {

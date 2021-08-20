@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import getUserObject from '../../utils/loginHelper';
 import { auth } from '../../firebase/firebase';
+import { getUserData } from '../../firebase/helpers/userHelper';
 import { useDispatch } from 'react-redux';
 import { Login as userLogin } from '../../redux/actions/userLogin';
 
@@ -13,7 +14,11 @@ export default function AuthInitializer({ children }) {
     auth.onAuthStateChanged(userData => {
       if (!userData) return;
       const user = getUserObject(userData);
-      dispatch(userLogin(user));
+      getUserData(user?.email).then(userData => {
+        dispatch(userLogin(userData));
+      }).catch(() => {
+        dispatch(userLogin(user));
+      });
     })
   }, [dispatch]);
 

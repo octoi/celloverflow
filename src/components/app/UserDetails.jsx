@@ -21,7 +21,9 @@ export default function UserDetails() {
       </div>
       <div className="stats">
         {user?.occupation && <h3>{user?.occupation}</h3>}
-        {user?.website && <a href={user?.website}>{user?.website}</a>}
+        {user?.website && <p>
+          <a href={user?.website}>{user?.website}</a>
+        </p>}
         {user?.bio && <p>{user?.bio}</p>}
       </div>
       <button onClick={() => history.push('/settings')}>Settings</button>
