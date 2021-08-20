@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AuthWrapper from "../components/auth/AuthWrapper";
 import { useSelector } from 'react-redux';
-import { SettingContainer } from '../styles/settingStyles';
+import { SettingContainer, ButtonContainer } from '../styles/settingStyles';
 
 export default function Settings() {
     const user = useSelector(state => state.user?.user);
@@ -22,6 +22,10 @@ export default function Settings() {
                     <textarea placeholder='Tell others, who the heck are you 🤖' rows='5' />
                 </div>
             </SettingContainer>
+            <ButtonContainer>
+                <button>Save</button>
+                <button style={{ background: 'var(--error-color)', marginLeft: '10px', }}>Cancel</button>
+            </ButtonContainer>
         </AuthWrapper>
     );
 }

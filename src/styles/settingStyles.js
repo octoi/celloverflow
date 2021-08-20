@@ -31,3 +31,23 @@ export const SettingContainer = styled.div`
     }
   }  
 `;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    width: 100%;
+    margin-top: 30px;
+    background: var(--accent-color);
+    border-radius: 8px;
+    height: 60px;
+    font-size: 20px;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+`
