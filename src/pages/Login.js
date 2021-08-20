@@ -5,6 +5,7 @@ import { Flex, Heading, Button, Link, Text, useToast } from '@chakra-ui/react';
 import { auth, provider } from '../firebase/firebase';
 import { useDispatch } from 'react-redux';
 import { Login as userLogin } from '../redux/actions/userLogin';
+import { saveUser as saveUserToFirestore } from '../firebase/helpers/userHelper';
 
 export default function Login() {
   const showToast = useToast();
@@ -12,8 +13,9 @@ export default function Login() {
 
   const loginWithGoogle = () => {
     auth.signInWithPopup(provider).then(userData => {
-      const user = getUserObject(userData.user); // getting wanted user data user data 
+      const user = getUserObject(userData.user); // getting wanted user data from user data 
       dispatchAction(userLogin(user));
+      saveUserToFirestore(user);
     }).catch(err => {
       console.log(err);
       showToast({

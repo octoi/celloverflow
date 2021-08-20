@@ -60,8 +60,7 @@ body {
 /* custom selection  */
 
 ::selection {
-    color: #FFC04A;
-    background: var(--primaryAccentColor);
+    background: var(--accent-color);
 }
 
 button,
