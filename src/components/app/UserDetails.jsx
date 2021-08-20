@@ -8,6 +8,8 @@ export default function UserDetails() {
 
   const history = useHistory();
 
+  console.log(user);
+
   return (
     <UserDetailsContainer>
       <div className="profile">
@@ -16,6 +18,11 @@ export default function UserDetails() {
           <h2>{user?.name}</h2>
           <h3>@{user?.username}</h3>
         </div>
+      </div>
+      <div className="stats">
+        {user?.occupation && <h3>{user?.occupation}</h3>}
+        {user?.website && <a href={user?.website}>{user?.website}</a>}
+        {user?.bio && <p>{user?.bio}</p>}
       </div>
       <button onClick={() => history.push('/settings')}>Settings</button>
     </UserDetailsContainer>

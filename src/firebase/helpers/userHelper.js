@@ -7,7 +7,8 @@ export function saveUser(userData) {
     userRef.get().then(firebaseUser => {
       if (firebaseUser.exists) {
         userRef.update(userData);
-        resolve(firebaseUser.data());
+        const firebaseUserData = firebaseUser.data();
+        resolve(firebaseUserData);
       } else {
         userRef.set({
           ...userData,

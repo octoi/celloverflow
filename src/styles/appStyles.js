@@ -115,6 +115,26 @@ export const UserDetailsContainer = styled.div`
     }
   }
 
+  .stats {
+    h3 {
+      margin-top: 10px;
+      color: var(--text-opacity-color);
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    
+    a {
+      color: var(--accent-color);
+      font-size: 20px;
+    }
+
+    p {
+      margin-top: 10px;
+      color: var(--text-opacity-color);
+      font-size: 20px;
+    }
+  }
+
   button {
     width: 100%;
     margin-top: 30px;
