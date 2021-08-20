@@ -18,8 +18,8 @@ export const PostContainer = styled.div`
 
 export const Post = styled.div`
   background: var(--secondary-color);
-  padding: 30px;
-  border-radius: 15px;
+  padding: 50px;
+  border-radius: 25px;
   cursor: pointer;
   transition: 0.3s;
   margin-bottom: 20px;
@@ -32,11 +32,11 @@ export const Post = styled.div`
   p {
     font-size: 22px;
     color: var(--text-opacity-color);
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   .bottom {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -70,20 +70,21 @@ export const Post = styled.div`
   }
   
   @media(max-width: 915px) {
+    padding: 35px;
+
     h3 { font-size: 23px; }
     p { font-size: 20px; }
-
+    
+    .tags { display: none !important; }
     span { font-size: 20px !important; }
-    .tags { flex-direction: column; span { width: fit-content; } }
-    /* .bottom { flex-direction: column; } */
   }
 `
 
 export const UserDetailsContainer = styled.div`
-  width: 450px;
+  width: 480px;
   background: var(--secondary-color);
-  border-radius: 15px;
-  padding: 30px;
+  border-radius: 25px;
+  padding: 40px;
   height: fit-content;
 
   .profile {
