@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AuthWrapper from '../components/auth/AuthWrapper';
 import getUserObject from '../utils/loginHelper';
-import { Flex, Heading, Button, Link, Text, useToast } from '@chakra-ui/react';
+import { Flex, Heading, Button, Link, Text, CircularProgress, useToast } from '@chakra-ui/react';
 import { auth, provider } from '../firebase/firebase';
 import { useDispatch } from 'react-redux';
 import { Login as userLogin } from '../redux/actions/userLogin';
 import { saveUser as saveUserToFirestore } from '../firebase/helpers/userHelper';
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const showToast = useToast();
   const dispatchAction = useDispatch();
 
   const loginWithGoogle = () => {
     auth.signInWithPopup(provider).then(userData => {
       const user = getUserObject(userData.user); // getting wanted user data from user data 
-      dispatchAction(userLogin(user));
-      saveUserToFirestore(user);
+      saveUserToFirestore(user).then(newUserData => {
+        setIsLoading(false);
+        dispatchAction(userLogin(newUserData));
+      }).catch(() => {
+        setIsLoading(false);
+        showToast({
+          title: 'Failed to login 😭',
+          position: 'top-right',
+          duration: 3000,
+          status: 'error',
+          isClosable: true,
+        });
+      });
     }).catch(err => {
       console.log(err);
       showToast({
@@ -38,7 +51,7 @@ export default function Login() {
             <Link href='/page?type=terms'> Terms & services</Link>
           </Text>
           <Button onClick={loginWithGoogle} size="lg" width='100%' style={{ background: 'var(--accent-color)' }}>
-            Log In With Google
+            {isLoading ? <CircularProgress /> : 'Log In With Google'}
           </Button>
         </Flex>
       </Flex>
