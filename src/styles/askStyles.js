@@ -39,4 +39,18 @@ export const Container = styled.div`
     font-size: 22px;
     border-radius: 12px;
   }
+
+  .tags {
+    display: flex;
+    margin-bottom: 10px;
+    overflow-x: scroll;
+
+    span {
+      padding: 8px 20px;
+      border-radius: 10px;
+      border: 2px solid var(--accent-color);
+      margin-right: 15px;
+      font-size: 22px;
+    }
+  }
 `
