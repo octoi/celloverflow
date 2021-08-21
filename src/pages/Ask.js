@@ -6,6 +6,7 @@ export default function Ask() {
   const [title, setTitle] = useState('');
   const [tagInputValue, setTagInputValue] = useState('');
   const [tags, setTags] = useState([]);
+  const [description, setDescription] = useState('');
 
   return (
     <AuthWrapper authenticationRequired={true}>
@@ -35,6 +36,17 @@ export default function Ask() {
               let tagsFromValue = inputVal.split(',').filter(tag => tag.trim().length !== 0);
               setTagInputValue(inputVal);
               setTags(tagsFromValue)
+            }}
+          />
+        </div>
+        <div className='input'>
+          <h3>Short Description ( {description.length} / 250 )</h3>
+          <textarea
+            placeholder='Short explanation of your problem'
+            value={description}
+            onChange={(e) => {
+              if (e.target.value.length > 250) return;
+              setDescription(e.target.value);
             }}
           />
         </div>

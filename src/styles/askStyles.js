@@ -31,13 +31,13 @@ export const Container = styled.div`
   }
   
   textarea {
-    margin-top: 20px;
     width: 100%;
     background: var(--secondary-color);
     color: #fff;
     padding: 20px;
     font-size: 22px;
     border-radius: 12px;
+    resize: none;
   }
 
   .tags {
