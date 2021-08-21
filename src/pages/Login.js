@@ -16,6 +16,7 @@ export default function Login() {
   const loginWithGoogle = () => {
     auth.signInWithPopup(provider).then(userData => {
       const user = getUserObject(userData.user); // getting wanted user data from user data 
+
       saveUserToFirestore(user).then(newUserData => {
         setIsLoading(false);
         dispatchAction(userLogin(newUserData));

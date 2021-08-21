@@ -14,7 +14,7 @@ import { logout as userLogout } from '../redux/actions/userLogin';
 import { useHistory } from 'react-router-dom';
 
 export default function Header() {
-  const { isOpen, onOpen ,onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,6 +23,7 @@ export default function Header() {
 
   const logout = () => {
     onClose();
+    history.push('/app')
     dispatch(userLogout());
   }
 

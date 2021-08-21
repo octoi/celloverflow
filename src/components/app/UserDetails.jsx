@@ -8,8 +8,6 @@ export default function UserDetails() {
 
   const history = useHistory();
 
-  console.log(user);
-
   return (
     <UserDetailsContainer>
       <div className="profile">
