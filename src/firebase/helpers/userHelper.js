@@ -1,6 +1,6 @@
 import { firestore } from '../firebase';
 
-export function saveUser(userData) {
+export function saveUser(userData, isSaving = false) {
   return new Promise((resolve, reject) => {
     const userRef = firestore.collection('users').doc(userData?.email);
 
@@ -8,7 +8,9 @@ export function saveUser(userData) {
       if (firebaseUser.exists) {
         userRef.update(userData);
         const firebaseUserData = firebaseUser.data();
-        resolve(firebaseUserData);
+
+        const returnData = isSaving ? userData : firebaseUserData;
+        resolve(returnData);
       } else {
         userRef.set({
           ...userData,

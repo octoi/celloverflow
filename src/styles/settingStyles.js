@@ -38,6 +38,9 @@ export const ButtonContainer = styled.div`
   justify-content: space-between;
 
   button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     margin-top: 30px;
     background: var(--accent-color);

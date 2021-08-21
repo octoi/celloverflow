@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AuthWrapper from '../components/auth/AuthWrapper';
 import getUserObject from '../utils/loginHelper';
-import { Flex, Heading, Button, Link, Text, CircularProgress, useToast } from '@chakra-ui/react';
+import { Flex, Heading, Button, Link, Text, Spinner, useToast } from '@chakra-ui/react';
 import { auth, provider } from '../firebase/firebase';
 import { useDispatch } from 'react-redux';
 import { Login as userLogin } from '../redux/actions/userLogin';
@@ -52,7 +52,7 @@ export default function Login() {
             <Link href='/page?type=terms'> Terms & services</Link>
           </Text>
           <Button onClick={loginWithGoogle} size="lg" width='100%' style={{ background: 'var(--accent-color)' }}>
-            {isLoading ? <CircularProgress /> : 'Log In With Google'}
+            {isLoading ? <Spinner /> : 'Log In With Google'}
           </Button>
         </Flex>
       </Flex>
