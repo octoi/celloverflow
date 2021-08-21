@@ -8,6 +8,7 @@ import NotFoundPage from './pages/404';
 import RickRollPage from './pages/rickRollPage';
 import Settings from './pages/Settings';
 import User from './pages/User';
+import Ask from './pages/Ask';
 import Header from './components/Header';
 import AuthInitializer from './components/auth/AuthInitializer';
 
@@ -19,9 +20,13 @@ export default function App() {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/app' exact component={Application} />
+
           <Route path='/login' exact component={Login} />
           <Route path='/settings' exact component={Settings} />
           <Route path='/user/:username' exact component={User} />
+
+          <Route path='/ask' exact component={Ask} />
+
           <Route path='/page' exact component={RickRollPage} />
           <Route component={NotFoundPage} />
         </Switch>
