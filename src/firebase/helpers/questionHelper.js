@@ -8,3 +8,16 @@ export const saveQuestionToFirestore = (questionData) => {
       .catch(reject)
   });
 }
+
+export const getAllQuestions = () => {
+  return new Promise((resolve, reject) => {
+    const questionRef = firestore.collection('questions');
+    questionRef.get().then(document => {
+      const allQuestions = document.docs.map(doc => doc.data());
+      resolve(allQuestions)
+    }).catch(err => {
+      console.log(err);
+      reject();
+    })
+  });
+}

@@ -32,7 +32,8 @@ export default function Ask() {
       description,
       tags,
       body,
-      user: user?.email,
+      username: user?.username,
+      userEmail: user?.email,
     }).then(() => {
       setIsLoading(false);
       showToast({
