@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import AuthWrapper from '../components/auth/AuthWrapper';
 import MarkdownPreview from '../components/MarkdownPreview';
+import { useHistory } from 'react-router-dom';
 import { Container } from '../styles/askStyles';
+import { ButtonContainer } from '../styles/settingStyles';
+import { Spinner } from '@chakra-ui/react';
 
 export default function Ask() {
   const [title, setTitle] = useState('');
@@ -11,6 +14,13 @@ export default function Ask() {
 
   const [tagInputValue, setTagInputValue] = useState('');
   const [isMarkdownPreview, setIsMarkdownPreview] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const history = useHistory();
+
+  const askQuestion = () => {
+    setIsLoading(true);
+  }
 
   return (
     <AuthWrapper authenticationRequired={true}>
@@ -68,6 +78,31 @@ export default function Ask() {
             onChange={(e) => setBody(e.target.value)}
           />}
         </div>
+        <ButtonContainer>
+          <ButtonContainer>
+            <button
+              onClick={askQuestion}
+              style={isLoading ? {
+                opacity: '0.5',
+                cursor: 'not-allowed',
+              } : {}}
+            >{isLoading ? <Spinner /> : 'Save'}
+            </button>
+            <button
+              onClick={() => history.push('/app')}
+              style={isLoading ? {
+                background: 'var(--error-color)',
+                marginLeft: '10px',
+                opacity: '0.5',
+                cursor: 'not-allowed',
+              } : {
+                background: 'var(--error-color)',
+                marginLeft: '10px',
+              }}
+              disabled={isLoading}
+            >Cancel</button>
+          </ButtonContainer>
+        </ButtonContainer>
       </Container>
     </AuthWrapper>
   )
