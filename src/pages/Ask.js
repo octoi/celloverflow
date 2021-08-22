@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import AuthWrapper from '../components/auth/AuthWrapper';
 import MarkdownPreview from '../components/MarkdownPreview';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Container } from '../styles/askStyles';
 import { ButtonContainer } from '../styles/settingStyles';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, useToast } from '@chakra-ui/react';
+import { saveQuestionToFirestore } from '../firebase/helpers/questionHelper';
 
 export default function Ask() {
   const [title, setTitle] = useState('');
@@ -17,9 +19,40 @@ export default function Ask() {
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
+  const showToast = useToast();
+  const user = useSelector(state => state.user?.user);
+
+  const isNotEmpty = (str) => str.trim().length !== 0;
+  const canAskQuestion = isNotEmpty(title) && isNotEmpty(description) && isNotEmpty(body) && tags.length !== 0;
 
   const askQuestion = () => {
     setIsLoading(true);
+    saveQuestionToFirestore({
+      title,
+      description,
+      tags,
+      body,
+      user: user?.email,
+    }).then(() => {
+      setIsLoading(false);
+      showToast({
+        title: 'Created question successfully 🥳',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right',
+        status: 'success',
+      });
+      history.push('/app');
+    }).catch((err) => {
+      console.log(err);
+      showToast({
+        title: 'Failed to create ask question 🤐',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right',
+        status: 'error',
+      });
+    })
   }
 
   return (
@@ -82,11 +115,11 @@ export default function Ask() {
           <ButtonContainer>
             <button
               onClick={askQuestion}
-              style={isLoading ? {
+              style={isLoading || !canAskQuestion ? {
                 opacity: '0.5',
                 cursor: 'not-allowed',
               } : {}}
-            >{isLoading ? <Spinner /> : 'Save'}
+            >{isLoading ? <Spinner /> : 'Ask'}
             </button>
             <button
               onClick={() => history.push('/app')}
