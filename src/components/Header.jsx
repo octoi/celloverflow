@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderContainer, Button, StyledButton } from '../styles/headerStyles';
+import { HeaderContainer, Button, StyledButton, AlertDiv } from '../styles/headerStyles';
 import { useDisclosure } from '@chakra-ui/react';
 
 import CustomModal from './Modal';
@@ -52,10 +52,14 @@ export default function Header() {
         }
         title='Options ⚙️'
       >
-        <StyledButton onClick={() => redirect(`/ask`)} style={{ background: 'var(--accent-color)' }}>Ask Question ❓</StyledButton>
-        <StyledButton onClick={() => redirect(`/user/${user?.username}`)} style={{ background: 'var(--accent-color)' }}>Profile 😊</StyledButton>
-        <StyledButton onClick={() => redirect(`/settings`)} style={{ background: 'var(--accent-color)' }}>Settings ‍🧰</StyledButton>
-        <StyledButton onClick={logout} style={{ background: 'var(--error-color)' }}>Logout 🚶‍♂️</StyledButton>
+        <AlertDiv>
+          <StyledButton onClick={() => redirect(`/ask`)} style={{ background: 'var(--accent-color)' }}>Ask Question ❓</StyledButton>
+          <StyledButton onClick={() => redirect(`/user/${user?.username}`)} style={{ background: 'var(--accent-color)' }}>Profile 😊</StyledButton>
+        </AlertDiv>
+        <AlertDiv>
+          <StyledButton onClick={() => redirect(`/settings`)} style={{ background: 'var(--accent-color)' }}>Settings ‍🧰</StyledButton>
+          <StyledButton onClick={logout} style={{ background: 'var(--error-color)' }}>Logout 🚶‍♂️</StyledButton>
+        </AlertDiv>
       </CustomModal>}
     </HeaderContainer>
   )

@@ -54,3 +54,12 @@ export const StyledButton = styled(Button)`
     justify-content: center;
     margin-top: 10px;
 `
+
+export const AlertDiv = styled.div`
+    display: flex;
+
+    button {
+        margin: 5px;
+        height: 100px;
+    }
+`
