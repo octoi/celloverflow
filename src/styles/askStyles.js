@@ -37,7 +37,6 @@ export const Container = styled.div`
     padding: 20px;
     font-size: 22px;
     border-radius: 12px;
-    resize: none;
   }
 
   .tags {
@@ -51,6 +50,22 @@ export const Container = styled.div`
       border: 2px solid var(--accent-color);
       margin-right: 15px;
       font-size: 22px;
+    }
+  }
+
+  .markdown-edit {
+    button {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      height: 50px;
+      font-size: 20px;
+      transition: 0.3s;
+      padding: 0px 10px;
+      
+      &:hover {
+        opacity: 0.5;
+      }
     }
   }
 `

@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import AuthWrapper from '../components/auth/AuthWrapper';
+import MarkdownPreview from '../components/MarkdownPreview';
 import { Container } from '../styles/askStyles';
 
 export default function Ask() {
   const [title, setTitle] = useState('');
-  const [tagInputValue, setTagInputValue] = useState('');
   const [tags, setTags] = useState([]);
   const [description, setDescription] = useState('');
+  const [body, setBody] = useState('');
+
+  const [tagInputValue, setTagInputValue] = useState('');
+  const [isMarkdownPreview, setIsMarkdownPreview] = useState(false);
 
   return (
     <AuthWrapper authenticationRequired={true}>
@@ -44,11 +48,25 @@ export default function Ask() {
           <textarea
             placeholder='Short explanation of your problem'
             value={description}
+            style={{ resize: 'none' }}
             onChange={(e) => {
               if (e.target.value.length > 250) return;
               setDescription(e.target.value);
             }}
           />
+        </div>
+        <div className='input markdown-edit'>
+          <h3>Explain your problem ✍️ (Markdown supported)</h3>
+          <button
+            onClick={() => setIsMarkdownPreview(!isMarkdownPreview)}
+            style={{ background: isMarkdownPreview ? 'var(--accent-color)' : 'var(--secondary-color)' }}
+          >Show Preview</button>
+          {isMarkdownPreview ? <MarkdownPreview markdown={body} /> : <textarea
+            placeholder='Yesterday 12.00 PM when i was doing my work i got rick rolled'
+            rows="20"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+          />}
         </div>
       </Container>
     </AuthWrapper>
