@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useSelector } from 'react-redux';
 import { useToast } from '@chakra-ui/react';
 import { PostContainer, Post } from '../../styles/appStyles';
@@ -6,6 +7,7 @@ import { getAllQuestions } from '../../firebase/helpers/questionHelper';
 
 export default function PostSection() {
   const [questions, setQuestions] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
 
   const showToast = useToast();
   const user = useSelector(state => state.user?.user);
@@ -23,11 +25,17 @@ export default function PostSection() {
         status: 'error',
       });
     })
+    setisLoading(false);
   }, [showToast, user])
 
   return (
     <PostContainer>
-      {questions.map(question => (
+      {isLoading && (
+        <SkeletonTheme color="var(--secondary-color)" highlightColor="#444">
+          <Skeleton height={260} count={3} style={{ borderRadius: '25px', marginBottom: "10px" }} />
+        </SkeletonTheme>
+      )}
+      {!isLoading && questions.map(question => (
         <Post>
           <h3>{question?.title}</h3>
           <p>{question?.description}</p>
