@@ -9,6 +9,7 @@ import RickRollPage from './pages/rickRollPage';
 import Settings from './pages/Settings';
 import User from './pages/User';
 import Ask from './pages/Ask';
+import Question from './pages/Question';
 import Header from './components/Header';
 import AuthInitializer from './components/auth/AuthInitializer';
 
@@ -26,6 +27,7 @@ export default function App() {
           <Route path='/user/:username' exact component={User} />
 
           <Route path='/ask' exact component={Ask} />
+          <Route path='/question/:questionId' exact component={Question} />
 
           <Route path='/page' exact component={RickRollPage} />
           <Route component={NotFoundPage} />

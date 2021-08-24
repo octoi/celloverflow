@@ -26,3 +26,16 @@ export const getAllQuestions = () => {
     })
   });
 }
+
+export const getQuestionById = (questionId) => {
+  return new Promise((resolve, reject) => {
+    const questionRef = firestore.collection('questions').doc(questionId);
+
+    questionRef.get().then(question => {
+      resolve({ ...question.data(), id: question.id })
+    }).catch(err => {
+      console.log(err)
+      reject()
+    });
+  });
+}

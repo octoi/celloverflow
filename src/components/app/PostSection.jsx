@@ -8,7 +8,7 @@ import { getAllQuestions } from '../../firebase/helpers/questionHelper';
 
 export default function PostSection() {
   const [questions, setQuestions] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const showToast = useToast();
   const user = useSelector(state => state.user?.user);
@@ -18,7 +18,9 @@ export default function PostSection() {
     if (!user) return;
     getAllQuestions().then(questionsFromFirestore => {
       setQuestions(questionsFromFirestore);
+      setIsLoading(false);
     }).catch(() => {
+      setIsLoading(false);
       showToast({
         title: 'Failed to fetch data 😭',
         duration: 3000,
@@ -27,7 +29,6 @@ export default function PostSection() {
         status: 'error',
       });
     })
-    setisLoading(false);
   }, [showToast, user])
 
   return (
@@ -38,7 +39,7 @@ export default function PostSection() {
         </SkeletonTheme>
       )}
       {!isLoading && questions.map(question => (
-        <Post key={question?.id}>
+        <Post onClick={() => history.push(`/question/${question?.id}`)} key={question?.id}>
           <h3>{question?.title}</h3>
           <p>{question?.description}</p>
           <div className='bottom'>
