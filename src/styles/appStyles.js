@@ -105,6 +105,7 @@ export const UserDetailsContainer = styled.div`
       height: 73px;
       border-radius: 50%;
       border: 3px solid var(--accent-color);
+      object-fit: cover;
     }
 
     div {

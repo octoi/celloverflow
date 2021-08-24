@@ -26,4 +26,40 @@ export const ParticipantsWrapper = styled.div`
   @media (max-width: 1446px) {
     display: none;
   }
+
+  h2 {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+
+    img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 3px solid var(--accent-color);
+      object-fit: cover;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    h4 {
+      color: var(--text-opacity-color);
+      font-size: 18px;
+    }
+  }
 `
