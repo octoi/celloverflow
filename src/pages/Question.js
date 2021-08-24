@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 import { getQuestionById } from '../firebase/helpers/questionHelper';
+import { Container, QuestionAndAnswerWrapper, ParticipantsWrapper } from '../styles/questionStyles';
+import AuthWrapper from '../components/auth/AuthWrapper';
+import Participants from '../components/question/Participants';
+import QuestionPart from '../components/question/QuestionPart';
+import Answers from '../components/question/Answers';
 
 export default function Question() {
   const [question, setQuestion] = useState();
@@ -24,8 +29,16 @@ export default function Question() {
   }, [questionId, showToast])
 
   return (
-    <div>
-
-    </div>
+    <AuthWrapper authenticationRequired={true}>
+      <Container>
+        <QuestionAndAnswerWrapper>
+          <QuestionPart />
+          <Answers />
+        </QuestionAndAnswerWrapper>
+        <ParticipantsWrapper>
+          <Participants />
+        </ParticipantsWrapper>
+      </Container>
+    </AuthWrapper>
   )
 }
