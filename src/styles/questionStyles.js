@@ -17,7 +17,7 @@ export const QuestionAndAnswerWrapper = styled.div`
 `
 
 export const ParticipantsWrapper = styled.div`
-  width: 480px;
+  width: 480px !important;
   background: var(--secondary-color);
   border-radius: 25px;
   padding: 40px;
@@ -61,5 +61,33 @@ export const ParticipantsWrapper = styled.div`
       color: var(--text-opacity-color);
       font-size: 18px;
     }
+  }
+`
+
+export const QuestionPart = styled.div`
+  width: 100%;
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .tags {
+    display: flex;
+    margin-top: 40px;
+    overflow-y: scroll;
+    max-width: 100%;
+
+    span {
+      border-radius: 10px;
+      border: 2px solid var(--accent-color);
+      margin-right: 15px;
+      padding: 8px 20px;
+      font-size: 22px;
+    }
+  }
+
+  h2 {
+    margin-top: 30px;
+    font-size: 25px;
   }
 `
