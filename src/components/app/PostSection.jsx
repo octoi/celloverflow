@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useToast } from '@chakra-ui/react';
 import { PostContainer, Post } from '../../styles/appStyles';
@@ -11,6 +12,7 @@ export default function PostSection() {
 
   const showToast = useToast();
   const user = useSelector(state => state.user?.user);
+  const history = useHistory();
 
   useEffect(() => {
     if (!user) return;
@@ -43,7 +45,7 @@ export default function PostSection() {
             <div className='tags'>
               {question?.tags.map(tag => <span>{tag}</span>)}
             </div>
-            <p>asked by <span>@{question?.username}</span></p>
+            <p>asked by <span onClick={() => history.push(`/user/${question?.username}`)}>@{question?.username}</span></p>
           </div>
         </Post>
       ))}

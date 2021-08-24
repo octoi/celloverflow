@@ -73,10 +73,19 @@ export const Post = styled.div`
     padding: 35px;
 
     h3 { font-size: 23px; }
-    p { font-size: 20px; }
-    
-    .tags { display: none !important; }
-    span { font-size: 20px !important; }
+    p { font-size: 20px; margin: 0 !important; }
+
+    .bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .tags { 
+      overflow-x: scroll; 
+      max-width: 100%;
+    }
+
+    span { font-size: 20px !important }
   }
 `
 
