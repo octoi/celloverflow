@@ -104,7 +104,7 @@ export default function Ask() {
           <button
             onClick={() => setIsMarkdownPreview(!isMarkdownPreview)}
             style={{ background: isMarkdownPreview ? 'var(--accent-color)' : 'var(--secondary-color)' }}
-          >Show Preview</button>
+          >Show {isMarkdownPreview ? 'Raw' : 'Preview'}</button>
           {isMarkdownPreview ? <MarkdownPreview markdown={body} /> : <textarea
             placeholder='Yesterday 12.00 PM when i was doing my work i got rick rolled'
             rows="20"
