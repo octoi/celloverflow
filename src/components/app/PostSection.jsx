@@ -38,17 +38,18 @@ export default function PostSection() {
         </SkeletonTheme>
       )}
       {!isLoading && questions.map(question => (
-        <Post>
+        <Post key={question?.id}>
           <h3>{question?.title}</h3>
           <p>{question?.description}</p>
           <div className='bottom'>
             <div className='tags'>
-              {question?.tags.map(tag => <span>{tag}</span>)}
+              {question?.tags.map((tag, idx) => <span key={idx}>{tag}</span>)}
             </div>
             <p>asked by <span onClick={() => history.push(`/user/${question?.username}`)}>@{question?.username}</span></p>
           </div>
         </Post>
-      ))}
+      )
+      )}
       {/* <Post>
         <h3>Why I’m getting headache ??</h3>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown ✨</p>

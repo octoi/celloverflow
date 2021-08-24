@@ -13,7 +13,12 @@ export const getAllQuestions = () => {
   return new Promise((resolve, reject) => {
     const questionRef = firestore.collection('questions');
     questionRef.get().then(document => {
-      const allQuestions = document.docs.map(doc => doc.data());
+      const allQuestions = document.docs.map(doc => {
+        return {
+          ...doc.data(),
+          id: doc?.id,
+        }
+      });
       resolve(allQuestions)
     }).catch(err => {
       console.log(err);
