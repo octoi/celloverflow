@@ -9,7 +9,7 @@ import upVoteFilled from '../../assets/upvotefilled.svg';
 import downVoteFilled from '../../assets/downvotefilled.svg';
 
 
-export default function QuestionPart({ question }) {
+export default function QuestionPart({ question, user }) {
   const [isUpVote, setIsUpVote] = useState(true);
   const [isDownVote, setIsDownVote] = useState(false);
 
@@ -59,7 +59,7 @@ export default function QuestionPart({ question }) {
       <div className="utils">
         <div>
           <p className="share">share</p>
-          <p className="delete">delete</p>
+          {user?.email === question?.userEmail && <p className="delete">delete</p>}
         </div>
         <p>asked by <span>@{question?.username}</span></p>
       </div>

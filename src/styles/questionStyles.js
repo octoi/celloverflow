@@ -27,8 +27,8 @@ export const QuestionPart = styled.div`
   .tags {
     display: flex;
     margin-top: 40px;
-    overflow-y: scroll;
     max-width: 100%;
+    overflow-x: scroll;
 
     span {
       border-radius: 10px;

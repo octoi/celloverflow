@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useParams } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 import { getQuestionById } from '../firebase/helpers/questionHelper';
 import { Container, QuestionAndAnswerWrapper } from '../styles/questionStyles';
 import AuthWrapper from '../components/auth/AuthWrapper';
@@ -14,6 +15,7 @@ export default function Question() {
   const { questionId } = useParams();
 
   const showToast = useToast();
+  const user = useSelector(state => state.user?.user);
 
   useEffect(() => {
     setIsLoading(true);
@@ -43,7 +45,7 @@ export default function Question() {
           </div>
         )}
         {!isLoading && question && <QuestionAndAnswerWrapper>
-          <QuestionPart question={question} />
+          <QuestionPart question={question} user={user} />
           <Answers />
         </QuestionAndAnswerWrapper>}
       </Container>
