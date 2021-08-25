@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import MarkdownPreview from '../../components/MarkdownPreview';
+import { useHistory } from 'react-router-dom';
+import { MarkdownContainer } from '../../styles/questionStyles';
+import { saveAnswer } from '../../firebase/helpers/answerHelper';
 import {
   useDisclosure,
+  useToast,
   Text,
   Flex,
   Button,
@@ -10,18 +14,41 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerBody,
-  DrawerCloseButton
+  DrawerCloseButton,
+  Spinner
 } from '@chakra-ui/react';
-import { MarkdownContainer } from '../../styles/questionStyles';
 
 export default function AnswerBtn({ questionId, user }) {
   const [answerBody, setAnswerBody] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [isPreview, setIsPreview] = useState(false);
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const showToast = useToast();
+  const history = useHistory();
 
   const answerQuestion = () => {
-
+    setIsLoading(true);
+    saveAnswer({ user: user?.username, question: questionId, body: answerBody }).then(() => {
+      setIsLoading(false);
+      showToast({
+        title: 'Answer submitted successfully 🥳',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right',
+        status: 'success',
+      });
+      history.push(`/question/${questionId}`)
+    }).catch(() => {
+      setIsLoading(false);
+      showToast({
+        title: 'Failed to answer 😶',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right',
+        status: 'error',
+      });
+    })
   }
 
   return (
@@ -37,11 +64,11 @@ export default function AnswerBtn({ questionId, user }) {
               <Button
                 onClick={answerQuestion}
                 size="lg"
-                disabled={answerBody.trim().length === 0}
+                disabled={answerBody.trim().length === 0 || isLoading}
                 background="var(--accent-color)"
                 ml={2}
                 _hover={answerBody.trim().length === 0 ? {} : { opacity: 0.8 }}
-              >Answer</Button>
+              >{isLoading ? <Spinner /> : 'Answer'}</Button>
             </Flex>
           </DrawerHeader>
           <DrawerCloseButton />
@@ -60,6 +87,7 @@ export default function AnswerBtn({ questionId, user }) {
                 placeholder='Type your answer (Markdown Supported)'
                 value={answerBody}
                 onChange={(e) => setAnswerBody(e.target.value)}
+                disabled={isLoading}
               /> : <MarkdownPreview markdown={answerBody} />}
               <div className="preview">
                 <MarkdownPreview markdown={answerBody} />
