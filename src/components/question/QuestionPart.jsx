@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { QuestionPart as Container } from '../../styles/questionStyles';
 
-// Vote icosn
+// Vote icons
 import upVoteOutlined from '../../assets/upvoteoutlined.svg';
 import downVoteOutlined from '../../assets/downvoteoutlined.svg';
 import upVoteFilled from '../../assets/upvotefilled.svg';
@@ -9,6 +9,27 @@ import downVoteFilled from '../../assets/downvotefilled.svg';
 
 
 export default function QuestionPart() {
+  const [isUpVote, setIsUpVote] = useState(true);
+  const [isDownVote, setIsDownVote] = useState(false);
+
+  const upVote = () => {
+    if (isUpVote) {
+      setIsUpVote(false);
+    } else {
+      setIsUpVote(true)
+      setIsDownVote(false)
+    }
+  }
+
+  const downVote = () => {
+    if (isDownVote) {
+      setIsDownVote(false);
+    } else {
+      setIsDownVote(true)
+      setIsUpVote(false)
+    }
+  }
+
   return (
     <Container>
       <h1>Why I’m getting headache ??</h1>
@@ -21,12 +42,12 @@ export default function QuestionPart() {
       <div className="question">
         <div className="description-vote">
           <div className="vote">
-            <button>
-              <img src={upVoteOutlined} alt="Up Vote" />
+            <button onClick={upVote}>
+              <img src={isUpVote ? upVoteFilled : upVoteOutlined} alt="Up Vote" />
             </button>
             <p>32</p>
-            <button>
-              <img src={downVoteOutlined} alt="Down Vote" />
+            <button onClick={downVote}>
+              <img src={isDownVote ? downVoteFilled : downVoteOutlined} alt="Down Vote" />
             </button>
           </div>
           <p className="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s, when an unknown ✨</p>

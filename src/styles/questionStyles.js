@@ -95,6 +95,7 @@ export const QuestionPart = styled.div`
     background: var(--secondary-color);
     padding: 30px;
     border-radius: 20px;
+    margin-top: 30px;
   }
 
   .description-vote { 
