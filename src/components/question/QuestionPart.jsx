@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { QuestionPart as Container } from '../../styles/questionStyles';
 import { voteQuestion } from '../../firebase/helpers/questionHelper';
 import { useToast } from '@chakra-ui/react';
+import moment from 'moment';
 import MarkdownPreview from '../../components/MarkdownPreview';
 import DeleteBtn from './DeleteBtn';
 
@@ -81,7 +82,7 @@ export default function QuestionPart({ question, user }) {
       <div className="tags">
         {question?.tags?.map((tag, idx) => <span key={idx}>{tag}</span>)}
       </div>
-      <h2>2 days ago</h2>
+      <h2>{moment(question?.createdAt?.toDate()).fromNow()}</h2>
 
       <div className="question">
         <div className="description-vote">
