@@ -111,3 +111,41 @@ export const QuestionPart = styled.div`
     }
   }
 `
+
+export const MarkdownContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  .utils {
+    display: none;
+  }
+
+  textarea {
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid var(--primary-color);
+    resize: none;
+    font-size: 22px;
+    margin-right: 20px;
+  }
+  
+  @media (max-width: 1113px) {
+    flex-direction: column;
+
+    .preview {
+      display: none;
+    }
+
+    .utils {
+      display: block;
+      margin: 20px 0px;
+    }
+
+    textarea {
+      width: 100%;
+      border: none;
+      margin-right: 0px;
+    }
+  }
+`

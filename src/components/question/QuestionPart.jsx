@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import MarkdownPreview from '../../components/MarkdownPreview';
 import DeleteBtn from './DeleteBtn';
+import AnswerBtn from './AnswerBtn';
 
 // Vote icons
 import upVoteOutlined from '../../assets/upvoteoutlined.svg';
@@ -115,6 +116,7 @@ export default function QuestionPart({ question, user }) {
             });
           }} className="share">share</p>
           {user?.email === question?.userEmail && <DeleteBtn questionId={question?.id} />}
+          {user?.email !== question?.userEmail && <AnswerBtn questionId={question?.id} user={user} />}
         </div>
         <p>asked by <span onClick={() => history.push(`/user/${question?.username}`)}>@{question?.username}</span></p>
       </div>
