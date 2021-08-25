@@ -58,7 +58,7 @@ export const Container = styled.div`
   }
     
   code {
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
     border-radius: 3px;
     font-family: Consolas, "Liberation Mono", Courier, monospace;
     margin: 0 2px;
