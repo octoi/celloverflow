@@ -39,3 +39,14 @@ export const getQuestionById = (questionId) => {
     });
   });
 }
+
+export const deleteQuestion = (questionId) => {
+  return new Promise((resolve, reject) => {
+    const questionRef = firestore.collection('questions').doc(questionId);
+
+    questionRef.delete().then(resolve).catch(err => {
+      console.log(err)
+      reject()
+    });
+  });
+}

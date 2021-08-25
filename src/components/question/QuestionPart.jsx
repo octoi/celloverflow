@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import MarkdownPreview from '../../components/MarkdownPreview';
 import { QuestionPart as Container } from '../../styles/questionStyles';
+import MarkdownPreview from '../../components/MarkdownPreview';
+import DeleteBtn from './DeleteBtn';
 
 // Vote icons
 import upVoteOutlined from '../../assets/upvoteoutlined.svg';
@@ -59,7 +60,7 @@ export default function QuestionPart({ question, user }) {
       <div className="utils">
         <div>
           <p className="share">share</p>
-          {user?.email === question?.userEmail && <p className="delete">delete</p>}
+          {user?.email === question?.userEmail && <DeleteBtn questionId={question?.id} />}
         </div>
         <p>asked by <span>@{question?.username}</span></p>
       </div>
