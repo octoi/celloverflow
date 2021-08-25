@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDisclosure, Button, useToast, Spinner } from '@chakra-ui/react';
 import { deleteQuestion as requestDeleteQuestion } from '../../firebase/helpers/questionHelper';
+import { deleteAnswer as requestDeleteAnswer } from '../../firebase/helpers/answerHelper';
 import CustomModal from '../Modal';
 
 export default function DeleteBtn({ questionId, answerId, isAnswer }) {
@@ -29,7 +30,20 @@ export default function DeleteBtn({ questionId, answerId, isAnswer }) {
         });
       })
     } else {
-
+      requestDeleteAnswer(answerId).then(() => {
+        setIsLoading(false)
+        window.location.reload();
+        onClose();
+      }).catch(err => {
+        setIsLoading(false)
+        showToast({
+          title: 'Failed to delete 😶',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right',
+          status: 'error',
+        });
+      })
     }
   }
 

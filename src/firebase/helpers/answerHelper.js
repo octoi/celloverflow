@@ -48,3 +48,14 @@ export const voteAnswer = (answerId, votes, voters) => {
     });
   });
 }
+
+export const deleteAnswer = (answerId) => {
+  return new Promise((resolve, reject) => {
+    const questionRef = firestore.collection('answers').doc(answerId);
+
+    questionRef.delete().then(resolve).catch(err => {
+      console.log(err)
+      reject()
+    });
+  });
+}

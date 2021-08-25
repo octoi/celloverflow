@@ -107,7 +107,7 @@ export default function Answer({ answer }) {
               status: 'info',
             });
           }} className="share">share</p>
-          {user?.username === answer?.user && <DeleteBtn questionId={answer?.id} />}
+          {user?.username === answer?.user && <DeleteBtn answerId={answer?.id} isAnswer />}
         </div>
         <p>answered by <span onClick={() => history.push(`/user/${answer?.user}`)}>@{answer?.user}</span></p>
       </div>
