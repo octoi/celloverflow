@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { QuestionPart as Container } from '../../styles/questionStyles';
 import { voteQuestion } from '../../firebase/helpers/questionHelper';
 import { useToast } from '@chakra-ui/react';
@@ -19,8 +19,24 @@ export default function QuestionPart({ question, user }) {
 
   const showToast = useToast();
 
-  const updateVotesInFirestore = (currentVotes, isUpVote) => {
-    const voters = [...question?.voters, { username: user?.username, isUpVote }]
+  useEffect(() => {
+    const userVote = question?.voters[user?.username];
+    if (userVote) {
+      if (userVote?.isUpVote) {
+        setIsUpVote(true)
+      } else {
+        setIsDownVote(true);
+      }
+    }
+  }, [question, user]);
+
+  const updateVotesInFirestore = (currentVotes, isUpVote, isRemove) => {
+    const voters = { ...question?.voters, [user?.username]: { username: user?.username, isUpVote } }
+
+    if (isRemove) {
+      delete voters[user?.username]
+    }
+
     voteQuestion(question?.id, currentVotes, voters).catch((err) => {
       showToast({
         title: 'Failed to vote 😶',
@@ -36,6 +52,7 @@ export default function QuestionPart({ question, user }) {
     if (isUpVote) {
       setIsUpVote(false);
       setVotes(votes - 1);
+      updateVotesInFirestore(votes - 1, false, true)
     } else {
       setVotes(votes + 1);
       updateVotesInFirestore(votes + 1, true)
@@ -47,6 +64,8 @@ export default function QuestionPart({ question, user }) {
   const downVote = () => {
     if (isDownVote) {
       setIsDownVote(false);
+      setVotes(votes + 1);
+      updateVotesInFirestore(votes + 1, false, true)
     } else {
       setVotes(votes - 1);
       updateVotesInFirestore(votes - 1, false)
