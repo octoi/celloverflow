@@ -90,4 +90,20 @@ export const QuestionPart = styled.div`
     margin-top: 30px;
     font-size: 25px;
   }
+
+  .question {
+    background: var(--secondary-color);
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .description-vote { 
+    display: flex;
+    justify-content: start;
+
+    .description { 
+      margin-left: 10px;
+      font-size: 22px;
+    }
+  }
 `
