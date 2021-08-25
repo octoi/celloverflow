@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { QuestionPart as Container } from '../../styles/questionStyles';
 import { voteQuestion } from '../../firebase/helpers/questionHelper';
 import { useToast } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import MarkdownPreview from '../../components/MarkdownPreview';
 import DeleteBtn from './DeleteBtn';
@@ -19,6 +20,7 @@ export default function QuestionPart({ question, user }) {
   const [isDownVote, setIsDownVote] = useState(false);
 
   const showToast = useToast();
+  const history = useHistory();
 
   useEffect(() => {
     const userVote = question?.voters[user?.username];
@@ -102,10 +104,19 @@ export default function QuestionPart({ question, user }) {
 
       <div className="utils">
         <div>
-          <p className="share">share</p>
+          <p onClick={() => {
+            showToast({
+              title: 'Just copy the page url and share 😜',
+              description: 'Actually I\'m pretty lazy to implement this feature :)',
+              duration: 3000,
+              isClosable: true,
+              position: 'top-right',
+              status: 'info',
+            });
+          }} className="share">share</p>
           {user?.email === question?.userEmail && <DeleteBtn questionId={question?.id} />}
         </div>
-        <p>asked by <span>@{question?.username}</span></p>
+        <p>asked by <span onClick={() => history.push(`/user/${question?.username}`)}>@{question?.username}</span></p>
       </div>
     </Container>
   )
