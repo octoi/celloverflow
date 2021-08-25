@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { voteAnswer } from '../../firebase/helpers/answerHelper';
 import { useToast } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 import MarkdownPreview from '../../components/MarkdownPreview';
+import DeleteBtn from './DeleteBtn';
 
 // Vote icons
 import upVoteOutlined from '../../assets/upvoteoutlined.svg';
@@ -16,7 +18,9 @@ export default function Answer({ answer }) {
   const [isDownVote, setIsDownVote] = useState(false);
 
   const user = useSelector(state => state.user?.user);
+
   const showToast = useToast();
+  const history = useHistory()
 
   useEffect(() => {
     const userVote = answer?.voters[user?.username];
@@ -90,6 +94,22 @@ export default function Answer({ answer }) {
             <MarkdownPreview markdown={answer?.body} />
           </div>
         </div>
+      </div>
+      <div className="utils">
+        <div>
+          <p onClick={() => {
+            showToast({
+              title: 'Just copy the page url and share 😜',
+              description: 'Actually I\'m pretty lazy to implement this feature :)',
+              duration: 3000,
+              isClosable: true,
+              position: 'top-right',
+              status: 'info',
+            });
+          }} className="share">share</p>
+          {user?.username === answer?.user && <DeleteBtn questionId={answer?.id} />}
+        </div>
+        <p>answered by <span onClick={() => history.push(`/user/${answer?.user}`)}>@{answer?.user}</span></p>
       </div>
     </div>
   )

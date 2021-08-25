@@ -4,29 +4,33 @@ import { useDisclosure, Button, useToast, Spinner } from '@chakra-ui/react';
 import { deleteQuestion as requestDeleteQuestion } from '../../firebase/helpers/questionHelper';
 import CustomModal from '../Modal';
 
-export default function DeleteBtn({ questionId }) {
+export default function DeleteBtn({ questionId, answerId, isAnswer }) {
   const [isLoading, setIsLoading] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const showToast = useToast();
   const history = useHistory();
 
-  const deleteQuestion = () => {
+  const deleteThing = () => {
     setIsLoading(true)
-    requestDeleteQuestion(questionId).then(() => {
-      setIsLoading(false)
-      history.push('/')
-      onClose();
-    }).catch(err => {
-      setIsLoading(false)
-      showToast({
-        title: 'Failed to delete 😶',
-        duration: 3000,
-        isClosable: true,
-        position: 'top-right',
-        status: 'error',
-      });
-    })
+    if (!isAnswer) {
+      requestDeleteQuestion(questionId).then(() => {
+        setIsLoading(false)
+        history.push('/')
+        onClose();
+      }).catch(err => {
+        setIsLoading(false)
+        showToast({
+          title: 'Failed to delete 😶',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right',
+          status: 'error',
+        });
+      })
+    } else {
+
+    }
   }
 
   return (
@@ -52,7 +56,7 @@ export default function DeleteBtn({ questionId }) {
         ml={2}
         width="48%"
         disabled={isLoading}
-        onClick={deleteQuestion}
+        onClick={deleteThing}
       >{isLoading ? <Spinner /> : 'Yep'}</Button>
     </CustomModal>
   )

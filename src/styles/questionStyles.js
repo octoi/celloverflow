@@ -223,4 +223,11 @@ export const AnswerContainer = styled.div`
       color: var(--accent-color);
     }
   }
+
+  @media(max-width: 750px) {
+    .markdown {
+      margin-left: 10px !important;
+      overflow-x: scroll;
+    }
+  }
 `
