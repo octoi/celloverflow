@@ -16,3 +16,21 @@ export const saveAnswer = (answerData) => {
       .catch(reject)
   });
 }
+
+export const getAllAnswers = (questionId) => {
+  return new Promise((resolve, reject) => {
+    const answerRef = firestore.collection('answers').where('question', '==', questionId);
+    answerRef.get().then(document => {
+      const allAnswers = document.docs.map(doc => {
+        return {
+          ...doc.data(),
+          id: doc?.id,
+        }
+      });
+      resolve(allAnswers)
+    }).catch(err => {
+      console.log(err);
+      reject(err);
+    })
+  });
+}

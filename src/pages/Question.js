@@ -46,7 +46,7 @@ export default function Question() {
         )}
         {!isLoading && question && <QuestionAndAnswerWrapper>
           <QuestionPart question={question} user={user} />
-          <Answers />
+          <Answers questionId={questionId} />
         </QuestionAndAnswerWrapper>}
       </Container>
     </AuthWrapper>

@@ -149,3 +149,78 @@ export const MarkdownContainer = styled.div`
     }
   }
 `
+
+export const AnswerContainer = styled.div`
+  margin-top: 30px;
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .answer {
+    background: var(--secondary-color);
+    padding: 30px;
+    border-radius: 20px;
+    margin-top: 30px;
+  }
+
+  .description-vote { 
+    display: flex;
+    align-items: start;
+
+    .markdown { 
+      margin-left: 20px;
+      font-size: 22px;
+    }
+  }
+
+  .vote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 22px;
+      margin: 5px 0px;
+    }
+
+    button {
+      width: 35px;
+      height: 35px;
+      transition: 0.5s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .utils {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    font-size: 22px;
+    
+    p { 
+      margin-right: 10px; 
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    div {
+      display: flex;
+
+      .share { color: var(--accent-color); }
+      .delete { color: var(--error-color); }
+    }
+
+    span {
+      color: var(--accent-color);
+    }
+  }
+`

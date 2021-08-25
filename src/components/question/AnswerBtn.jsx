@@ -39,6 +39,7 @@ export default function AnswerBtn({ questionId, user }) {
         status: 'success',
       });
       history.push(`/question/${questionId}`)
+      onClose();
     }).catch(() => {
       setIsLoading(false);
       showToast({
