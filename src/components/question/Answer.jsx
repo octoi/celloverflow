@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { voteAnswer } from '../../firebase/helpers/answerHelper';
+import { useToast } from '@chakra-ui/react';
 import MarkdownPreview from '../../components/MarkdownPreview';
 
 // Vote icons
@@ -14,6 +16,18 @@ export default function Answer({ answer }) {
   const [isDownVote, setIsDownVote] = useState(false);
 
   const user = useSelector(state => state.user?.user);
+  const showToast = useToast();
+
+  useEffect(() => {
+    const userVote = answer?.voters[user?.username];
+    if (userVote) {
+      if (userVote?.isUpVote) {
+        setIsUpVote(true)
+      } else {
+        setIsDownVote(true);
+      }
+    }
+  }, [answer, user]);
 
   const updateVotesInFirestore = (currentVotes, isUpVote, isRemove) => {
     const voters = { ...answer?.voters, [user?.username]: { username: user?.username, isUpVote } }
@@ -21,6 +35,16 @@ export default function Answer({ answer }) {
     if (isRemove) {
       delete voters[user?.username]
     }
+
+    voteAnswer(answer?.id, currentVotes, voters).catch((err) => {
+      showToast({
+        title: 'Failed to vote 😶',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right',
+        status: 'error',
+      });
+    })
   }
 
   const upVote = () => {

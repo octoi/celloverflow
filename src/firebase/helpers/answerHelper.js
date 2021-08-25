@@ -34,3 +34,17 @@ export const getAllAnswers = (questionId) => {
     })
   });
 }
+
+export const voteAnswer = (answerId, votes, voters) => {
+  return new Promise((resolve, reject) => {
+    const questionRef = firestore.collection('answers').doc(answerId);
+
+    questionRef.update({
+      votes,
+      voters
+    }).then(resolve).catch(err => {
+      console.log(err)
+      reject()
+    });
+  });
+}
