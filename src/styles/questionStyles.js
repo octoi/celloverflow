@@ -93,17 +93,39 @@ export const QuestionPart = styled.div`
 
   .question {
     background: var(--secondary-color);
-    padding: 20px;
+    padding: 30px;
     border-radius: 20px;
   }
 
   .description-vote { 
     display: flex;
-    justify-content: start;
+    align-items: start;
 
     .description { 
-      margin-left: 10px;
+      margin-left: 20px;
       font-size: 22px;
+    }
+  }
+
+  .vote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 22px;
+      margin: 5px 0px;
+    }
+
+    button {
+      width: 35px;
+      height: 35px;
+      transition: 0.5s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 `
