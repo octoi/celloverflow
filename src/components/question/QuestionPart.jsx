@@ -9,7 +9,7 @@ import upVoteFilled from '../../assets/upvotefilled.svg';
 import downVoteFilled from '../../assets/downvotefilled.svg';
 
 
-export default function QuestionPart() {
+export default function QuestionPart({ question }) {
   const [isUpVote, setIsUpVote] = useState(true);
   const [isDownVote, setIsDownVote] = useState(false);
 
@@ -31,15 +31,12 @@ export default function QuestionPart() {
     }
   }
 
-  const markdown = `# Why I’m getting headache ?? 
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown ✨`
 
   return (
     <Container>
-      <h1>Why I’m getting headache ??</h1>
+      <h1>{question?.title}</h1>
       <div className="tags">
-        <span>head</span>
-        <span>pain in head</span>
+        {question?.tags?.map((tag, idx) => <span key={idx}>{tag}</span>)}
       </div>
       <h2>2 days ago</h2>
 
@@ -49,14 +46,22 @@ export default function QuestionPart() {
             <button onClick={upVote}>
               <img src={isUpVote ? upVoteFilled : upVoteOutlined} alt="Up Vote" />
             </button>
-            <p>32</p>
+            <p>{question?.votes}</p>
             <button onClick={downVote}>
               <img src={isDownVote ? downVoteFilled : downVoteOutlined} alt="Down Vote" />
             </button>
           </div>
-          <p className="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s, when an unknown ✨</p>
+          <p className="description">{question?.description}</p>
         </div>
-        <MarkdownPreview markdown={markdown} />
+        <MarkdownPreview markdown={question?.body} />
+      </div>
+
+      <div className="utils">
+        <div>
+          <p className="share">share</p>
+          <p className="delete">delete</p>
+        </div>
+        <p>asked by <span>@{question?.username}</span></p>
       </div>
     </Container>
   )

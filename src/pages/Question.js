@@ -15,24 +15,24 @@ export default function Question() {
   const showToast = useToast();
 
   useEffect(() => {
-    // getQuestionById(questionId).then(questionFromFirestore => {
-    //   setQuestion(questionFromFirestore)
-    // }).catch(err => {
-    //   showToast({
-    //     title: 'Failed to fetch data 😭',
-    //     duration: 3000,
-    //     isClosable: true,
-    //     position: 'top-right',
-    //     status: 'error',
-    //   });
-    // })
+    getQuestionById(questionId).then(questionFromFirestore => {
+      setQuestion(questionFromFirestore);
+    }).catch(err => {
+      showToast({
+        title: 'Failed to fetch data 😭',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right',
+        status: 'error',
+      });
+    })
   }, [questionId, showToast])
 
   return (
     <AuthWrapper authenticationRequired={true}>
       <Container>
         <QuestionAndAnswerWrapper>
-          <QuestionPart />
+          {question && <QuestionPart question={question} />}
           <Answers />
         </QuestionAndAnswerWrapper>
         <ParticipantsWrapper>

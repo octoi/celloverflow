@@ -129,4 +129,32 @@ export const QuestionPart = styled.div`
       }
     }
   }
+
+  .utils {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    font-size: 22px;
+    
+    p { 
+      margin-right: 10px; 
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    div {
+      display: flex;
+
+      .share { color: var(--accent-color); }
+      .delete { color: var(--error-color); }
+    }
+
+    span {
+      color: var(--accent-color);
+    }
+  }
 `
