@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { getQuestionById } from '../firebase/helpers/questionHelper';
@@ -15,6 +15,7 @@ export default function Question() {
   const { questionId } = useParams();
 
   const showToast = useToast();
+  const history = useHistory();
   const user = useSelector(state => state.user?.user);
 
   useEffect(() => {
@@ -25,14 +26,19 @@ export default function Question() {
     }).catch(err => {
       setIsLoading(false);
       showToast({
-        title: 'Failed to fetch data 😭',
+        title: 'No such question 😭',
         duration: 3000,
         isClosable: true,
         position: 'top-right',
         status: 'error',
       });
+      history.push('/')
     })
-  }, [questionId, showToast])
+
+    return () => {
+      setQuestion([])
+    }
+  }, [questionId, showToast, history])
 
   return (
     <AuthWrapper authenticationRequired={true}>
