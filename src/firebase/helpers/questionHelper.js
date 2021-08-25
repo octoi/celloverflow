@@ -50,3 +50,17 @@ export const deleteQuestion = (questionId) => {
     });
   });
 }
+
+export const voteQuestion = (questionId, votes, voters) => {
+  return new Promise((resolve, reject) => {
+    const questionRef = firestore.collection('questions').doc(questionId);
+
+    questionRef.update({
+      votes,
+      voters
+    }).then(resolve).catch(err => {
+      console.log(err)
+      reject()
+    });
+  });
+}

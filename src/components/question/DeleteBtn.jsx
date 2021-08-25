@@ -20,7 +20,7 @@ export default function DeleteBtn({ questionId }) {
     }).catch(err => {
       setIsLoading(false)
       showToast({
-        title: err || 'Failed to delete 😶',
+        title: 'Failed to delete 😶',
         duration: 3000,
         isClosable: true,
         position: 'top-right',

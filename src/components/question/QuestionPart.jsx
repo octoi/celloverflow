@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { QuestionPart as Container } from '../../styles/questionStyles';
+import { voteQuestion } from '../../firebase/helpers/questionHelper';
+import { useToast } from '@chakra-ui/react';
 import MarkdownPreview from '../../components/MarkdownPreview';
 import DeleteBtn from './DeleteBtn';
 
@@ -11,13 +13,32 @@ import downVoteFilled from '../../assets/downvotefilled.svg';
 
 
 export default function QuestionPart({ question, user }) {
-  const [isUpVote, setIsUpVote] = useState(true);
+  const [votes, setVotes] = useState(0 || question?.votes);
+  const [isUpVote, setIsUpVote] = useState(false);
   const [isDownVote, setIsDownVote] = useState(false);
+
+  const showToast = useToast();
+
+  const updateVotesInFirestore = (currentVotes, isUpVote) => {
+    const voters = [...question?.voters, { username: user?.username, isUpVote }]
+    voteQuestion(question?.id, currentVotes, voters).catch((err) => {
+      showToast({
+        title: 'Failed to vote 😶',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right',
+        status: 'error',
+      });
+    })
+  }
 
   const upVote = () => {
     if (isUpVote) {
       setIsUpVote(false);
+      setVotes(votes - 1);
     } else {
+      setVotes(votes + 1);
+      updateVotesInFirestore(votes + 1, true)
       setIsUpVote(true)
       setIsDownVote(false)
     }
@@ -27,6 +48,8 @@ export default function QuestionPart({ question, user }) {
     if (isDownVote) {
       setIsDownVote(false);
     } else {
+      setVotes(votes - 1);
+      updateVotesInFirestore(votes - 1, false)
       setIsDownVote(true)
       setIsUpVote(false)
     }
@@ -47,7 +70,7 @@ export default function QuestionPart({ question, user }) {
             <button onClick={upVote}>
               <img src={isUpVote ? upVoteFilled : upVoteOutlined} alt="Up Vote" />
             </button>
-            <p>{question?.votes}</p>
+            <p>{votes}</p>
             <button onClick={downVote}>
               <img src={isDownVote ? downVoteFilled : downVoteOutlined} alt="Down Vote" />
             </button>
