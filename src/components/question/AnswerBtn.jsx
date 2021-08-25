@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import MarkdownPreview from '../../components/MarkdownPreview';
 import {
   useDisclosure,
+  Text,
+  Flex,
   Button,
   Drawer,
   DrawerOverlay,
@@ -16,8 +18,11 @@ export default function AnswerBtn({ questionId, user }) {
   const [answerBody, setAnswerBody] = useState('');
   const [isPreview, setIsPreview] = useState(false);
 
-
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const answerQuestion = () => {
+
+  }
 
   return (
     <div>
@@ -26,7 +31,19 @@ export default function AnswerBtn({ questionId, user }) {
       <Drawer isFullHeight placement="bottom" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent backgroundColor="var(--secondary-color)">
-          <DrawerHeader borderBottomWidth="1px">Answer 📝</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">
+            <Flex alignItems="center">
+              <Text fontSize="2xl">Answer 📝</Text>
+              <Button
+                onClick={answerQuestion}
+                size="lg"
+                disabled={answerBody.trim().length === 0}
+                background="var(--accent-color)"
+                ml={2}
+                _hover={answerBody.trim().length === 0 ? {} : { opacity: 0.8 }}
+              >Answer</Button>
+            </Flex>
+          </DrawerHeader>
           <DrawerCloseButton />
           <DrawerBody>
             <MarkdownContainer>
