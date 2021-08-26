@@ -13,7 +13,7 @@ export default function User() {
         <AuthWrapper authenticationRequired={true}>
             <Container>
                 <PostSection targetUsername={username} />
-                <UserDetails />
+                <UserDetails targetUsername={username} />
             </Container>
         </AuthWrapper>
     );

@@ -33,7 +33,7 @@ export default function PostSection({ targetUsername }) {
     return () => {
       setQuestions([]);
     }
-  }, [showToast, user])
+  }, [showToast, user, targetUsername])
 
   return (
     <PostContainer>

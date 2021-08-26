@@ -37,3 +37,16 @@ export function getUserData(userEmail) {
     })
   });
 }
+
+export function getUserDataByUsername(username) {
+  return new Promise((resolve, reject) => {
+    const userRef = firestore.collection("users").where("username", "==", username);
+
+    userRef.get().then(firebaseUser => {
+      firebaseUser.docs.forEach(user => {
+        if (user.exists) resolve(user.data());
+        else reject('User does not exists 😔');
+      })
+    }).catch(reject)
+  });
+}
