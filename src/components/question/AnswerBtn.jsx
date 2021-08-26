@@ -29,7 +29,12 @@ export default function AnswerBtn({ questionId, user }) {
 
   const answerQuestion = () => {
     setIsLoading(true);
-    saveAnswer({ user: user?.username, question: questionId, body: answerBody }).then(() => {
+    saveAnswer({
+      username: user?.username,
+      userEmail: user?.email,
+      question: questionId,
+      body: answerBody,
+    }).then(() => {
       setIsLoading(false);
       showToast({
         title: 'Answer submitted successfully 🥳',

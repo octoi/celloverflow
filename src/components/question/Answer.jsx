@@ -40,7 +40,7 @@ export default function Answer({ answer }) {
       delete voters[user?.username]
     }
 
-    voteAnswer(answer?.id, currentVotes, voters).catch((err) => {
+    voteAnswer(answer?.question, answer?.id, currentVotes, voters).catch((err) => {
       showToast({
         title: 'Failed to vote 😶',
         duration: 3000,
@@ -107,9 +107,9 @@ export default function Answer({ answer }) {
               status: 'info',
             });
           }} className="share">share</p>
-          {user?.username === answer?.user && <DeleteBtn answerId={answer?.id} isAnswer />}
+          {user?.email === answer?.userEmail && <DeleteBtn questionId={answer?.question} answerId={answer?.id} isAnswer />}
         </div>
-        <p>answered by <span onClick={() => history.push(`/user/${answer?.user}`)}>@{answer?.user}</span></p>
+        <p>answered by <span onClick={() => history.push(`/user/${answer?.username}`)}>@{answer?.username}</span></p>
       </div>
     </div>
   )

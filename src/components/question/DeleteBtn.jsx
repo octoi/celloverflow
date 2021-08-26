@@ -30,7 +30,7 @@ export default function DeleteBtn({ questionId, answerId, isAnswer }) {
         });
       })
     } else {
-      requestDeleteAnswer(answerId).then(() => {
+      requestDeleteAnswer(questionId, answerId).then(() => {
         setIsLoading(false)
         window.location.reload();
         onClose();

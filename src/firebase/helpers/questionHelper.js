@@ -44,11 +44,20 @@ export const getQuestionById = (questionId) => {
 export const deleteQuestion = (questionId) => {
   return new Promise((resolve, reject) => {
     const questionRef = firestore.collection('questions').doc(questionId);
+    const answersRef = firestore.collection('answers').doc(questionId).collection('answers');
 
     questionRef.delete().then(resolve).catch(err => {
       console.log(err)
       reject()
     });
+
+    try {
+      answersRef.get().then(collection => {
+        collection.docs.map(doc => doc.ref.delete());
+      });
+    } catch (err) {
+      console.log(err);
+    }
   });
 }
 

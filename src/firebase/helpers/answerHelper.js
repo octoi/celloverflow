@@ -10,7 +10,7 @@ export const saveAnswer = (answerData) => {
       createdAt: timestamp.now(),
     }
 
-    const answerRef = firestore.collection('answers');
+    const answerRef = firestore.collection('answers').doc(answerData?.question).collection('answers');
     answerRef.add(finalAnswerData)
       .then(resolve)
       .catch(reject)
@@ -19,7 +19,7 @@ export const saveAnswer = (answerData) => {
 
 export const getAllAnswers = (questionId) => {
   return new Promise((resolve, reject) => {
-    const answerRef = firestore.collection('answers').where('question', '==', questionId);
+    const answerRef = firestore.collection('answers').doc(questionId).collection('answers');
     answerRef.get().then(document => {
       const allAnswers = document.docs.map(doc => {
         return {
@@ -35,9 +35,9 @@ export const getAllAnswers = (questionId) => {
   });
 }
 
-export const voteAnswer = (answerId, votes, voters) => {
+export const voteAnswer = (questionId, answerId, votes, voters) => {
   return new Promise((resolve, reject) => {
-    const questionRef = firestore.collection('answers').doc(answerId);
+    const questionRef = firestore.collection('answers').doc(questionId).collection('answers').doc(answerId);
 
     questionRef.update({
       votes,
@@ -49,11 +49,11 @@ export const voteAnswer = (answerId, votes, voters) => {
   });
 }
 
-export const deleteAnswer = (answerId) => {
+export const deleteAnswer = (questionId, answerId) => {
   return new Promise((resolve, reject) => {
-    const questionRef = firestore.collection('answers').doc(answerId);
+    const answerRef = firestore.collection('answers').doc(questionId).collection('answers').doc(answerId);
 
-    questionRef.delete().then(resolve).catch(err => {
+    answerRef.delete().then(resolve).catch(err => {
       console.log(err)
       reject()
     });
