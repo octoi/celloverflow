@@ -32,6 +32,7 @@ export const getQuestionById = (questionId) => {
     const questionRef = firestore.collection('questions').doc(questionId);
 
     questionRef.get().then(question => {
+      if (!question.exists) reject();
       resolve({ ...question.data(), id: question.id })
     }).catch(err => {
       console.log(err)

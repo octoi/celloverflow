@@ -23,7 +23,7 @@ export default function Question() {
     getQuestionById(questionId).then(questionFromFirestore => {
       setQuestion(questionFromFirestore);
       setIsLoading(false);
-    }).catch(err => {
+    }).catch(() => {
       setIsLoading(false);
       showToast({
         title: 'No such question 😭',
@@ -32,7 +32,7 @@ export default function Question() {
         position: 'top-right',
         status: 'error',
       });
-      history.push('/')
+      history.push('/app')
     })
 
     return () => {

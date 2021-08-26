@@ -33,13 +33,14 @@ export default function AnswerBtn({ questionId, user }) {
       setIsLoading(false);
       showToast({
         title: 'Answer submitted successfully 🥳',
+        description: 'Reload for latest updates',
         duration: 3000,
         isClosable: true,
         position: 'top-right',
         status: 'success',
       });
+      history.push(`/question/${questionId}`)
       onClose();
-      window.location.reload();
     }).catch(() => {
       setIsLoading(false);
       showToast({
