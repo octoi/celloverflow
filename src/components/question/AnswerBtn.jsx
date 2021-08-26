@@ -38,8 +38,8 @@ export default function AnswerBtn({ questionId, user }) {
         position: 'top-right',
         status: 'success',
       });
-      history.push(`/question/${questionId}`)
       onClose();
+      window.location.reload();
     }).catch(() => {
       setIsLoading(false);
       showToast({

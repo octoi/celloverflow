@@ -25,6 +25,7 @@ export default function Answers({ questionId }) {
   return (
     <AnswerContainer>
       <h2>All Answers</h2>
+      {answers.length === 0 && <p className="nop">Seems like no one answered this question 😟</p>}
       {answers.map(answer => <Answer key={answer?.id} answer={answer} />)}
     </AnswerContainer>
   )

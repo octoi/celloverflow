@@ -118,6 +118,10 @@ export const MarkdownContainer = styled.div`
   width: 100%;
   height: 100%;
 
+  .preview {
+    width: 50%;
+  }
+
   .utils {
     display: none;
   }
@@ -158,6 +162,12 @@ export const AnswerContainer = styled.div`
     font-size: 22px;
   }
 
+  .nop {
+    font-size: 18px;
+    color: var(--text-opacity-color);
+    margin-top: 10px;
+  }
+
   .answer {
     background: var(--secondary-color);
     padding: 30px;
@@ -168,8 +178,10 @@ export const AnswerContainer = styled.div`
   .description-vote { 
     display: flex;
     align-items: start;
+    width: 96%;
 
     .markdown { 
+      width: 100%;
       margin-left: 20px;
       font-size: 22px;
     }
