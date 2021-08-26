@@ -9,9 +9,12 @@ export const saveQuestionToFirestore = (questionData) => {
   });
 }
 
-export const getAllQuestions = () => {
+export const getAllQuestions = (username) => {
   return new Promise((resolve, reject) => {
-    const questionRef = firestore.collection('questions');
+    const questionRef = !username
+      ? firestore.collection('questions')
+      : firestore.collection('questions').where('username', '==', username);
+
     questionRef.get().then(document => {
       const allQuestions = document.docs.map(doc => {
         return {

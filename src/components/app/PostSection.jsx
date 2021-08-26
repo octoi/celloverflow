@@ -6,7 +6,7 @@ import { useToast, Text } from '@chakra-ui/react';
 import { PostContainer, Post } from '../../styles/appStyles';
 import { getAllQuestions } from '../../firebase/helpers/questionHelper';
 
-export default function PostSection() {
+export default function PostSection({ targetUsername }) {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,7 +16,7 @@ export default function PostSection() {
 
   useEffect(() => {
     if (!user) return;
-    getAllQuestions().then(questionsFromFirestore => {
+    getAllQuestions(targetUsername).then(questionsFromFirestore => {
       setQuestions(questionsFromFirestore);
       setIsLoading(false);
     }).catch(() => {

@@ -74,7 +74,7 @@ export default function Ask() {
         <div className='input'>
           <h3>Tags ( separate tag by a , )</h3>
           {tags.length > 0 && <div className='tags'>
-            {tags.map(tag => <span>{tag}</span>)}
+            {tags.map((tag, idx) => <span key={idx}>{tag}</span>)}
           </div>}
           <input
             placeholder='Fever, Cold'
