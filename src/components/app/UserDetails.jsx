@@ -34,7 +34,7 @@ export default function UserDetails({ targetUsername }) {
   }, [targetUsername, currentUser, showToast, history]);
 
   return (
-    <UserDetailsContainer>
+    <UserDetailsContainer className='profile-hide'>
       {!user && <p>Loading ...</p>}
       {user && <>
         <div className="profile">
@@ -52,7 +52,9 @@ export default function UserDetails({ targetUsername }) {
           {user?.bio && <p>{user?.bio}</p>}
         </div>
       </>}
-      {user?.email === currentUser?.email && <button onClick={() => history.push('/settings')}>Settings</button>}
+      {user?.email === currentUser?.email && <button
+        onClick={() => history.push('/settings')}
+      >Settings</button>}
     </UserDetailsContainer>
   );
 }

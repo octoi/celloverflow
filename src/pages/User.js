@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Container } from '../styles/appStyles'
+import { Container } from '../styles/userStyles'
 
 import AuthWrapper from "../components/auth/AuthWrapper";
 import PostSection from '../components/app/PostSection';

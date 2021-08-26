@@ -5,6 +5,12 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 30px;
+
+  .profile-hide {
+    @media (max-width: 1446px) {
+      display: none;
+    }
+  }
 `
 
 export const PostContainer = styled.div`
@@ -160,8 +166,5 @@ export const UserDetailsContainer = styled.div`
       opacity: 0.5;
     }
   }
-
-  @media (max-width: 1446px) {
-    display: none;
-  }
 `
+
