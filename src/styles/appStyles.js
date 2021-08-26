@@ -43,6 +43,8 @@ export const Post = styled.div`
 
     .tags {
       display: flex;
+      flex-direction: row !important;
+      overflow-x: scroll;
 
       span {
         padding: 8px 20px;
@@ -50,6 +52,7 @@ export const Post = styled.div`
         border: 2px solid var(--accent-color);
         margin-right: 15px;
         font-size: 22px;
+        white-space: nowrap;
       }
     }
 

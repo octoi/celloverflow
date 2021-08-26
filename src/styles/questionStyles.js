@@ -36,6 +36,7 @@ export const QuestionPart = styled.div`
       margin-right: 15px;
       padding: 8px 20px;
       font-size: 22px;
+      white-space: nowrap;
     }
   }
 

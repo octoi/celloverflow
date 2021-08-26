@@ -50,6 +50,7 @@ export const Container = styled.div`
       border: 2px solid var(--accent-color);
       margin-right: 15px;
       font-size: 22px;
+      white-space: nowrap;
     }
   }
 
