@@ -2,7 +2,7 @@ import React from 'react';
 import AuthWrapper from '../components/auth/AuthWrapper';
 import stethoscope from '../assets/stethoscope.svg';
 import { useHistory } from 'react-router-dom';
-import { Container, Main } from '../styles/homeStyles';
+import { Container, Main, Content } from '../styles/homeStyles';
 
 export default function Home() {
   const history = useHistory();
@@ -21,6 +21,15 @@ export default function Home() {
           </div>
           <img src={stethoscope} alt="stethoscope" />
         </Main>
+        <Content>
+          <h2>CellOverflow, what ??</h2>
+          <p>
+            <span>CellOverflow</span> is an online community to ask questions about
+            your health issues . You can ask questions or help others by answer their questions .
+            Its basically <span>StackOverflow</span> but for health care 😉
+          </p>
+          <button>Give me a guilty feeling</button>
+        </Content>
       </Container>
     </AuthWrapper>
   )

@@ -68,3 +68,37 @@ export const Main = styled.div`
     }
   }
 `
+
+export const Content = styled.div`
+  margin-top: 100px;
+
+  h2 {
+    font-size: 40px;
+  }
+
+  p {
+    font-size: 30px;
+    margin-top: 30px;
+
+    span {
+      color: var(--accent-color);
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    margin-top: 30px;
+    padding: 15px 35px;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    border-radius: 15px;
+    font-size: 22px;
+    transition: 0.3s;
+
+    &:hover {
+      background: var(--accent-color);
+      color: var(--text-color);
+    }
+  }
+`
