@@ -29,7 +29,7 @@ export default function App() {
           <Route path='/ask' exact component={Ask} />
           <Route path='/question/:questionId' exact component={Question} />
 
-          <Route path='/page' exact component={RickRollPage} />
+          <Route path='/page' component={RickRollPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Router>

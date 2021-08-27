@@ -28,7 +28,7 @@ export default function Home() {
             your health issues . You can ask questions or help others by answer their questions .
             Its basically <span>StackOverflow</span> but for health care 😉
           </p>
-          <button>Give me a guilty feeling</button>
+          <button onClick={() => history.push('/page/guilty')}>Give me a guilty feeling</button>
         </Content>
       </Container>
     </AuthWrapper>

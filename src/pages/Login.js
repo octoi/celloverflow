@@ -49,7 +49,7 @@ export default function Login() {
           <Heading mb={4}>Get started</Heading>
           <Text mb={4} opacity="0.5">
             By signing in you agree our
-            <Link href='/page?type=terms'> Terms & services</Link>
+            <Link href='/page/terms'> Terms & services</Link>
           </Text>
           <Button onClick={loginWithGoogle} size="lg" width='100%' style={{ background: 'var(--accent-color)' }}>
             {isLoading ? <Spinner /> : 'Log In With Google'}

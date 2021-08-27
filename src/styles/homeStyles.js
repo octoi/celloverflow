@@ -101,4 +101,14 @@ export const Content = styled.div`
       color: var(--text-color);
     }
   }
+
+  @media(max-width: 570px) {
+    h2 {
+      font-size: 30px;
+    }
+    
+    p {
+      font-size: 22px;
+    }
+  }
 `
