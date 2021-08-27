@@ -27,6 +27,21 @@ export const Main = styled.div`
     }
   }
 
+  button {
+    margin-top: 30px;
+    padding: 15px 35px;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    border-radius: 15px;
+    font-size: 22px;
+    transition: 0.3s;
+
+    &:hover {
+      background: var(--accent-color);
+      color: var(--text-color);
+    }
+  }
+
   img {
     width: 400px;
   }
