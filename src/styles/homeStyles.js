@@ -10,6 +10,8 @@ export const Container = styled.div`
   @media(max-width: 570px) {
     margin: 50px 10px;
   }
+
+  margin-bottom: 30px !important;
 `
 
 export const Main = styled.div`
@@ -70,7 +72,7 @@ export const Main = styled.div`
 `
 
 export const Content = styled.div`
-  margin-top: 100px;
+  margin-top: 250px;
 
   h2 {
     font-size: 40px;
@@ -103,6 +105,8 @@ export const Content = styled.div`
   }
 
   @media(max-width: 570px) {
+    margin-top: 100px;
+
     h2 {
       font-size: 30px;
     }
