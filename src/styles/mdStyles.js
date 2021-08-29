@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  margin-top: 10px;
   font-size: 1.1rem;
 
   a {
