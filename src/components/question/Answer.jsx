@@ -97,24 +97,22 @@ export default function Answer({ answer }) {
         </div>
       </div>
       <div className="utils">
-        <div>
-          <div>
-            <CopyToClipboard
-              text={window.location.href}
-              onCopy={() => {
-                showToast({
-                  title: 'Page link copied to clipboard 📋',
-                  duration: 3000,
-                  isClosable: true,
-                  position: 'top-right',
-                  status: 'info',
-                });
-              }}
-            ><i className="share fas fa-share-alt"></i></CopyToClipboard>
-            {user?.email === answer?.userEmail && <DeleteBtn questionId={answer?.question} answerId={answer?.id} isAnswer />}
-          </div>
-          <p>answered by <span onClick={() => history.push(`/user/${answer?.username}`)}>@{answer?.username}</span></p>
+        <div style={{ marginRight: "10px" }}>
+          <CopyToClipboard
+            text={window.location.href}
+            onCopy={() => {
+              showToast({
+                title: 'Page link copied to clipboard 📋',
+                duration: 3000,
+                isClosable: true,
+                position: 'top-right',
+                status: 'info',
+              });
+            }}
+          ><i style={{ marginRight: "15px" }} className="share fas fa-share-alt"></i></CopyToClipboard>
+          {user?.email === answer?.userEmail && <DeleteBtn questionId={answer?.question} answerId={answer?.id} isAnswer />}
         </div>
+        <p>answered by <span onClick={() => history.push(`/user/${answer?.username}`)}>@{answer?.username}</span></p>
       </div>
     </div>
   )

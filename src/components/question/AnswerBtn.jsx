@@ -60,7 +60,7 @@ export default function AnswerBtn({ questionId, user }) {
 
   return (
     <div>
-      <p className="share" onClick={onOpen}>answer</p>
+      <i className="share fas fa-reply" onClick={onOpen}></i>
 
       <Drawer isFullHeight placement="bottom" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />

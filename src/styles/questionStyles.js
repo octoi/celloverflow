@@ -87,6 +87,7 @@ export const QuestionPart = styled.div`
   .utils {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 30px;
     font-size: 22px;
     
