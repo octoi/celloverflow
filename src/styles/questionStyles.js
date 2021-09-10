@@ -103,8 +103,19 @@ export const QuestionPart = styled.div`
     div {
       display: flex;
 
-      .share { color: var(--accent-color); }
-      .delete { color: var(--error-color); }
+      i {
+        cursor: pointer;
+        margin-right: 15px;
+      }
+      
+      .share { 
+        color: var(--accent-color); 
+      }
+      
+      .delete { 
+        font-weight: 400;
+        color: var(--error-color); 
+      }
     }
 
     span {

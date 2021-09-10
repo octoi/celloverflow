@@ -53,7 +53,7 @@ export default function Header() {
         title='Options ⚙️'
       >
         <AlertDiv>
-          <StyledButton onClick={() => redirect(`/ask`)} style={{ background: 'var(--accent-color)' }}>Ask Question ❓</StyledButton>
+          <StyledButton onClick={() => redirect(`/ask`)} style={{ background: 'var(--accent-color)' }}>Ask ❓</StyledButton>
           <StyledButton onClick={() => redirect(`/user/${user?.username}`)} style={{ background: 'var(--accent-color)' }}>Profile 😊</StyledButton>
         </AlertDiv>
         <AlertDiv>

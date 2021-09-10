@@ -49,7 +49,7 @@ export default function DeleteBtn({ questionId, answerId, isAnswer }) {
 
   return (
     <CustomModal
-      ui={<p className="delete">delete</p>}
+      ui={<i className="delete fas fa-trash-alt"></i>}
       title="Are you sure ?? 🥲"
       isOpen={isOpen}
       onOpen={onOpen}

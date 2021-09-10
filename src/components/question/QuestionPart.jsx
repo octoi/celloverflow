@@ -105,7 +105,7 @@ export default function QuestionPart({ question, user }) {
 
       <div className="utils">
         <div>
-          <p onClick={() => {
+          <i onClick={() => {
             showToast({
               title: 'Just copy the page url and share 😜',
               description: 'Actually I\'m pretty lazy to implement this feature :)',
@@ -114,7 +114,7 @@ export default function QuestionPart({ question, user }) {
               position: 'top-right',
               status: 'info',
             });
-          }} className="share">share</p>
+          }} className="share fas fa-share-alt"></i>
           {user?.email === question?.userEmail && <DeleteBtn questionId={question?.id} />}
           {user?.email !== question?.userEmail && <AnswerBtn questionId={question?.id} user={user} />}
         </div>
