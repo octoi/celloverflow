@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import MarkdownPreview from '../../components/MarkdownPreview';
-import { useHistory } from 'react-router-dom';
 import { MarkdownContainer } from '../../styles/questionStyles';
 import { saveAnswer } from '../../firebase/helpers/answerHelper';
 import {
@@ -25,7 +24,6 @@ export default function AnswerBtn({ questionId, user }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const showToast = useToast();
-  const history = useHistory();
 
   const answerQuestion = () => {
     setIsLoading(true);
@@ -36,16 +34,8 @@ export default function AnswerBtn({ questionId, user }) {
       body: answerBody,
     }).then(() => {
       setIsLoading(false);
-      showToast({
-        title: 'Answer submitted successfully 🥳',
-        description: 'Reload for latest updates',
-        duration: 3000,
-        isClosable: true,
-        position: 'top-right',
-        status: 'success',
-      });
-      history.push(`/question/${questionId}`)
       onClose();
+      window.location.reload();
     }).catch(() => {
       setIsLoading(false);
       showToast({
