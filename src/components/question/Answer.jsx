@@ -5,6 +5,7 @@ import { useToast } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import MarkdownPreview from '../../components/MarkdownPreview';
 import DeleteBtn from './DeleteBtn';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 // Vote icons
 import upVoteOutlined from '../../assets/upvoteoutlined.svg';
@@ -97,19 +98,23 @@ export default function Answer({ answer }) {
       </div>
       <div className="utils">
         <div>
-          <p onClick={() => {
-            showToast({
-              title: 'Just copy the page url and share 😜',
-              description: 'Actually I\'m pretty lazy to implement this feature :)',
-              duration: 3000,
-              isClosable: true,
-              position: 'top-right',
-              status: 'info',
-            });
-          }} className="share">share</p>
-          {user?.email === answer?.userEmail && <DeleteBtn questionId={answer?.question} answerId={answer?.id} isAnswer />}
+          <div>
+            <CopyToClipboard
+              text={window.location.href}
+              onCopy={() => {
+                showToast({
+                  title: 'Page link copied to clipboard 📋',
+                  duration: 3000,
+                  isClosable: true,
+                  position: 'top-right',
+                  status: 'info',
+                });
+              }}
+            ><i className="share fas fa-share-alt"></i></CopyToClipboard>
+            {user?.email === answer?.userEmail && <DeleteBtn questionId={answer?.question} answerId={answer?.id} isAnswer />}
+          </div>
+          <p>answered by <span onClick={() => history.push(`/user/${answer?.username}`)}>@{answer?.username}</span></p>
         </div>
-        <p>answered by <span onClick={() => history.push(`/user/${answer?.username}`)}>@{answer?.username}</span></p>
       </div>
     </div>
   )
