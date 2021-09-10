@@ -14,6 +14,7 @@ export default function Login() {
   const dispatchAction = useDispatch();
 
   const loginWithGoogle = () => {
+    setIsLoading(true);
     auth.signInWithPopup(provider).then(userData => {
       const user = getUserObject(userData.user); // getting wanted user data from user data 
 
@@ -51,7 +52,7 @@ export default function Login() {
             By signing in you agree our
             <Link href='/page/terms'> Terms & services</Link>
           </Text>
-          <Button onClick={loginWithGoogle} size="lg" width='100%' style={{ background: 'var(--accent-color)' }}>
+          <Button onClick={loginWithGoogle} size="lg" width='100%' disabled={isLoading} style={{ background: 'var(--accent-color)' }}>
             {isLoading ? <Spinner /> : 'Log In With Google'}
           </Button>
         </Flex>
