@@ -119,8 +119,16 @@ export const QuestionPart = styled.div`
       }
     }
 
-    span {
-      color: var(--accent-color);
+    p {
+      .cool {
+        color: var(--accent-color);
+      }
+    }
+
+    @media(max-width: 450px) {
+      .hide {
+        display: none;
+      }
     }
   }
 `
