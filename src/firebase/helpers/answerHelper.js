@@ -19,7 +19,7 @@ export const saveAnswer = (answerData) => {
 
 export const getAllAnswers = (questionId) => {
   return new Promise((resolve, reject) => {
-    const answerRef = firestore.collection('answers').doc(questionId).collection('answers');
+    const answerRef = firestore.collection('answers').doc(questionId).collection('answers').orderBy('votes', 'desc');
     answerRef.get().then(document => {
       const allAnswers = document.docs.map(doc => {
         return {
