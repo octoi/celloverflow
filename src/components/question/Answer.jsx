@@ -112,7 +112,7 @@ export default function Answer({ answer }) {
           ><i style={{ marginRight: "15px" }} className="share fas fa-share-alt"></i></CopyToClipboard>
           {user?.email === answer?.userEmail && <DeleteBtn questionId={answer?.question} answerId={answer?.id} isAnswer />}
         </div>
-        <p>answered by <span onClick={() => history.push(`/user/${answer?.username}`)}>@{answer?.username}</span></p>
+        <p><span className="hide">answered by</span> <span className="cool" onClick={() => history.push(`/user/${answer?.username}`)}>@{answer?.username}</span></p>
       </div>
     </div>
   )

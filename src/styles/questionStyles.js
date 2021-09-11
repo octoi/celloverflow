@@ -248,12 +248,31 @@ export const AnswerContainer = styled.div`
     div {
       display: flex;
 
-      .share { color: var(--accent-color); }
-      .delete { color: var(--error-color); }
+      i {
+        cursor: pointer;
+        margin-right: 15px;
+      }
+      
+      .share { 
+        color: var(--accent-color); 
+      }
+      
+      .delete { 
+        font-weight: 400;
+        color: var(--error-color); 
+      } 
     }
 
-    span {
-      color: var(--accent-color);
+    p {
+      .cool {
+        color: var(--accent-color);
+      }
+    }
+
+    @media(max-width: 450px) {
+      .hide { 
+        display: none;
+      }
     }
   }
 
